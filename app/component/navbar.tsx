@@ -1,8 +1,21 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { FaSearch, FaUser } from "react-icons/fa";
 import "tailwindcss/tailwind.css";
 
 export default function Navbar() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Fungsi untuk menambahkan kelas pada link aktif
+  const getLinkClasses = (path: string) =>
+    pathname === path
+      ? "px-4 py-2 text-red-600 bg-white rounded-md transition-colors" // gaya untuk link aktif
+      : "px-4 py-2 text-white hover:text-red-200 hover:bg-red-700 rounded-md transition-colors"; // gaya untuk link non-aktif
+
   return (
     <nav className="w-full bg-red-600 border-b border-red-700">
       <div className="max-w-7xl mx-auto px-4">
@@ -15,27 +28,18 @@ export default function Navbar() {
 
             {/* Navigation Links */}
             <div className="flex items-center gap-4">
-              <Link
-                href="/"
-                className="px-4 py-2 text-white hover:text-red-200 hover:bg-red-700 rounded-md transition-colors"
-              >
+              <Link href="/" className={getLinkClasses("/")}>
                 Home
               </Link>
-              <Link
-                href="/event"
-                className="px-4 py-2 text-white hover:text-red-200 hover:bg-red-700 rounded-md transition-colors"
-              >
+              <Link href="/event" className={getLinkClasses("/event")}>
                 Event
               </Link>
-              <Link
-                href="/food"
-                className="px-4 py-2 text-white hover:text-red-200 hover:bg-red-700 rounded-md transition-colors"
-              >
+              <Link href="/food" className={getLinkClasses("/food")}>
                 Food
               </Link>
               <Link
                 href="/destination"
-                className="px-4 py-2 text-white hover:text-red-200 hover:bg-red-700 rounded-md transition-colors"
+                className={getLinkClasses("/destination")}
               >
                 Destination
               </Link>
