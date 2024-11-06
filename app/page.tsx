@@ -1,6 +1,6 @@
 import React from "react";
 import { Search, User } from "lucide-react";
-import 'tailwindcss/tailwind.css';
+import "tailwindcss/tailwind.css";
 
 const HomePage = () => {
   const categories = [
@@ -11,35 +11,57 @@ const HomePage = () => {
   ];
 
   const popularPlaces = [
-    { id: 1, name: "Benteng Rotterdam", image: "https://via.placeholder.com/400x300" },
-    { id: 2, name: "Pulau Samalona", image: "https://via.placeholder.com/400x300" },
+    {
+      id: 1,
+      name: "Benteng Rotterdam",
+      image: "https://via.placeholder.com/400x300",
+    },
+    {
+      id: 2,
+      name: "Pulau Samalona",
+      image: "https://via.placeholder.com/400x300",
+    },
     {
       id: 3,
       name: "Center Point Indonesia",
       image: "https://via.placeholder.com/400x300",
     },
-    { id: 4, name: "Masjid 99 Kubah CPI", image: "https://via.placeholder.com/400x300" },
+    {
+      id: 4,
+      name: "Masjid 99 Kubah CPI",
+      image: "https://via.placeholder.com/400x300",
+    },
     {
       id: 5,
       name: "Kampung Karet Rammang Rammang",
       image: "https://via.placeholder.com/400x300",
     },
-    { id: 6, name: "Pulau Samalona", image: "https://via.placeholder.com/400x300" },
+    {
+      id: 6,
+      name: "Pulau Samalona",
+      image: "https://via.placeholder.com/400x300",
+    },
   ];
 
   const popularFood = [
-    { id: 1, name: "Coto Makassar", image: "https://via.placeholder.com/400x300" },
+    {
+      id: 1,
+      name: "Coto Makassar",
+      image: "https://via.placeholder.com/400x300",
+    },
     { id: 2, name: "Pallu Basa", image: "https://via.placeholder.com/400x300" },
     { id: 3, name: "Sop Konro", image: "https://via.placeholder.com/400x300" },
     { id: 4, name: "Pisang Epe", image: "https://via.placeholder.com/400x300" },
-    { id: 5, name: "Pisang Ijjou", image: "https://via.placeholder.com/400x300" },
-    { id: 6, name: "Ikan Bakar Parape", image: "https://via.placeholder.com/400x300" },
+    { id: 5, name: "Pisang Ijo", image: "https://via.placeholder.com/400x300" },
+    {
+      id: 6,
+      name: "Ikan Bakar Parape",
+      image: "https://via.placeholder.com/400x300",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-     
-
       {/* Hero Section */}
       <div className="relative h-96">
         <img
