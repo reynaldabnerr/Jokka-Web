@@ -8,15 +8,15 @@ const LandingPage = () => {
     {
       title: "Jokka Market",
       date: "22-26 FEBRUARI 2023",
-      image: "/api/placeholder/300/300",
+      image: "https://via.placeholder.com/300",
     },
     {
       title: "JogjaInErlanga",
-      image: "/api/placeholder/300/300",
+      image: "https://via.placeholder.com/300",
     },
     {
       title: "Makassar untuk Palestina",
-      image: "/api/placeholder/300/300",
+      image: "https://via.placeholder.com/300",
     },
   ];
 
@@ -67,7 +67,7 @@ const LandingPage = () => {
                     className="w-full h-[200px] object-cover rounded-t-lg"
                   />
                   <div className="p-4">
-                    <h3 className="font-bold mb-2">Lorem Ipsum Darom</h3>
+                    <h3 className="font-bold mb-2">{event.title}</h3>
                     <p className="text-sm text-gray-600">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit...
                     </p>
@@ -84,7 +84,7 @@ const LandingPage = () => {
         <div className="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-1/2">
             <img
-              src="/api/placeholder/600/400"
+              src="https://via.placeholder.com/600x400"
               alt="City View"
               className="rounded-lg w-full h-[300px] object-cover"
             />
@@ -136,7 +136,7 @@ const LandingPage = () => {
               </div>
             </div>
             <img
-              src="/api/placeholder/200/200"
+              src="https://via.placeholder.com/200"
               alt="QR Code"
               className="w-32 h-32"
             />
