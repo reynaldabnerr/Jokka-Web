@@ -1,0 +1,81 @@
+/* SignUp.css */
+
+/* Style untuk container utama */
+.content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100% - 56px);
+  padding: 20px;
+}
+
+/* Style untuk IonCard */
+.signup-card {
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Style untuk container input */
+.input-container {
+  background: #f8f9fa;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+/* Style untuk input */
+.input-field {
+  padding-left: 100px;
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Style untuk ikon */
+.icon-style {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+/* Style untuk container tombol */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 2px 0;
+  width: 100%;
+}
+
+/* Style untuk tombol utama */
+.button-style {
+  width: 300px;
+  margin: 0 auto;
+}
+
+/* Style untuk container signup */
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Style untuk tombol signup */
+.signup-button-style {
+  margin: 0;
+  height: 30px;
+}
+
+/* Custom input style */
+.custom-input .item-native {
+  border-radius: 10px !important;
+  padding-left: 0;
+}
+
+.custom-input-field {
+  font-size: 16px !important;
+  padding-left: 10px !important;
+}
