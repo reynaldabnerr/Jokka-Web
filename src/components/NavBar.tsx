@@ -7,77 +7,98 @@ import {
   IonButton,
   IonIcon,
 } from "@ionic/react";
-import { personCircleOutline, logOutOutline } from "ionicons/icons";
+import {
+  personCircleOutline,
+  logOutOutline,
+  menuOutline,
+} from "ionicons/icons";
 import { useHistory } from "react-router-dom";
 import { auth } from "../firebaseConfig";
+import "./NavBar.css";
 
 const NavBar: React.FC = () => {
   const history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const navigateTo = (path: string) => {
     history.push(path);
+    setMenuOpen(false); // Tutup menu saat navigasi
   };
 
   useEffect(() => {
-    // Periksa apakah pengguna sedang login
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setIsLoggedIn(!!user);
-
-      // Ambil userRole dari localStorage setelah login
-      if (user) {
-        const role = localStorage.getItem("userRole");
-        setIsAdmin(role === "admin");
-      } else {
-        setIsAdmin(false);
-      }
+      const role = localStorage.getItem("userRole");
+      setIsAdmin(role === "admin");
     });
 
-    return () => unsubscribe(); // Bersihkan listener saat komponen di-unmount
+    return () => unsubscribe();
   }, []);
 
   const handleLogout = async () => {
     await auth.signOut();
     localStorage.removeItem("userRole");
     history.push("/signin");
+    setMenuOpen(false); // Tutup menu saat logout
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
     <IonHeader>
-      <IonToolbar color="primary">
-        <IonTitle slot="start" className="ion-text-bold">
+      <IonToolbar color="primary" className="navbar-toolbar">
+        {/* Tulisan Jokka di kiri */}
+        <IonTitle slot="start" className="navbar-title">
           Jokka
         </IonTitle>
 
-        <IonButtons slot="start" style={{ marginLeft: "10px" }}>
-          <IonButton onClick={() => navigateTo("/home")}>Home</IonButton>
-          <IonButton onClick={() => navigateTo("/event")}>Event</IonButton>
-          <IonButton onClick={() => navigateTo("/destination")}>
-            Destination
-          </IonButton>
-          <IonButton onClick={() => navigateTo("/food")}>Food</IonButton>
-          <IonButton onClick={() => navigateTo("/AboutUs")}>About Us</IonButton>
-          {isAdmin && (
-            <IonButton onClick={() => navigateTo("/admin-dashboard")}>
-              Dashboard
+        {/* Semua tombol navigasi rata kanan */}
+        <IonButtons slot="end" className="navbar-end-buttons">
+          <div className={`navbar-menu ${menuOpen ? "open" : ""}`}>
+            <IonButton onClick={() => navigateTo("/home")}>Home</IonButton>
+            <IonButton onClick={() => navigateTo("/event")}>Event</IonButton>
+            <IonButton onClick={() => navigateTo("/destination")}>
+              Destination
             </IonButton>
-          )}
-        </IonButtons>
+            <IonButton onClick={() => navigateTo("/food")}>Food</IonButton>
+            <IonButton onClick={() => navigateTo("/AboutUs")}>
+              About Us
+            </IonButton>
+            {isAdmin && (
+              <IonButton onClick={() => navigateTo("/admin-dashboard")}>
+                Dashboard
+              </IonButton>
+            )}
+            {isLoggedIn ? (
+              <>
+                <IonButton onClick={handleLogout} className="logout-button">
+                  <IonIcon icon={logOutOutline} className="icon-style" />
+                </IonButton>
+                <IonButton
+                  onClick={() => navigateTo("/profile")}
+                  className="profile-button"
+                >
+                  <IonIcon icon={personCircleOutline} className="icon-style" />
+                </IonButton>
+              </>
+            ) : (
+              <IonButton
+                onClick={() => navigateTo("/signin")}
+                className="signin-button"
+              >
+                Sign In
+              </IonButton>
+            )}
+          </div>
 
-        <IonButtons slot="end">
-          {isLoggedIn ? (
-            <>
-              <IonButton onClick={handleLogout}>
-                <IonIcon icon={logOutOutline} slot="icon-only" />
-              </IonButton>
-              <IonButton onClick={() => navigateTo("/profile")}>
-                <IonIcon icon={personCircleOutline} slot="icon-only" />
-              </IonButton>
-            </>
-          ) : (
-            <IonButton onClick={() => navigateTo("/signin")}>Sign In</IonButton>
-          )}
+          {/* Ikon menu untuk perangkat seluler */}
+          <IonButton className="menu-icon" onClick={toggleMenu}>
+            <IonIcon icon={menuOutline} />
+          </IonButton>
         </IonButtons>
       </IonToolbar>
     </IonHeader>

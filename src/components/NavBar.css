@@ -1,0 +1,73 @@
+/* NavBar.css */
+
+.navbar-toolbar {
+  background: linear-gradient(135deg, #4c4caf, #8e44ad);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-left: 16px;
+}
+
+/* Rata kanan untuk semua tombol navigasi */
+.navbar-end-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Menu yang akan ditampilkan pada desktop */
+.navbar-menu {
+  display: flex;
+  gap: 10px;
+}
+
+/* Ikon menu hamburger untuk perangkat seluler */
+.menu-icon {
+  display: none;
+  color: #ffffff;
+  font-size: 1.8rem;
+}
+
+/* Atur ikon agar lebih besar dan kontras */
+.icon-style {
+  font-size: 24px;
+  color: #ffffff;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none; /* Sembunyikan menu pada layar kecil */
+  }
+
+  .menu-icon {
+    display: block; /* Tampilkan ikon menu hamburger */
+  }
+
+  /* Tampilkan menu sebagai dropdown ketika open di layar kecil */
+  .navbar-menu.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 56px;
+    right: 0;
+    width: 100%;
+    background-color: #4c4caf;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan untuk menu */
+  }
+
+  .navbar-menu.open ion-button {
+    width: 100%;
+    justify-content: center;
+    color: #ffffff;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
