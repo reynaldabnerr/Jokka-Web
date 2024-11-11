@@ -82,7 +82,7 @@
   font-weight: bold;
   transition: all 0.3s ease;
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(168, 168, 168, 0.2);
   /* Bayangan lebih kuat */
   border-radius: 16px;
   /* Rounded corners */
@@ -94,7 +94,7 @@
   transform: translateY(-4px) scale(1.05);
   /* Angkat dan perbesar tombol sedikit */
   transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(124, 124, 124, 0.3);
   /* Tambahkan bayangan */
   color: #ffffff;
   border-radius: 16px;
