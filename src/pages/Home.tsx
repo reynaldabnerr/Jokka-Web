@@ -8,6 +8,7 @@ import {
   IonButton,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 
 const Home: React.FC = () => {
@@ -19,11 +20,7 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Home</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <NavBar />
       <IonContent fullscreen className="ion-padding">
         <IonHeader collapse="condense">
           <IonToolbar>
@@ -31,13 +28,6 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <p>Welcome to the Home Page!</p>
-        <IonButton
-          expand="block"
-          onClick={goToSignIn}
-          className="ion-margin-top"
-        >
-          Go to Sign In
-        </IonButton>
       </IonContent>
     </IonPage>
   );

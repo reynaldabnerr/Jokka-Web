@@ -90,7 +90,6 @@ const SignUp: React.FC = () => {
           <IonTitle className="ion-text-center">Create Account</IonTitle>
         </IonToolbar>
       </IonHeader>
-
       <IonContent className="ion-padding" style={{ "--background": "#f5f5f5" }}>
         <div className="content-container">
           <div className="ion-text-center ion-padding">
