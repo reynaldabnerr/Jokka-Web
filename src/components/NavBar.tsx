@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonHeader,
   IonToolbar,
@@ -6,102 +6,81 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
-  IonAlert,
 } from "@ionic/react";
-import { personCircleOutline } from "ionicons/icons";
+import { personCircleOutline, logOutOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
-import { auth } from "../firebaseConfig"; // Pastikan konfigurasi Firebase Auth
+import { auth } from "../firebaseConfig";
 
 const NavBar: React.FC = () => {
   const history = useHistory();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [showLogoutConfirm, setShowLogoutConfirm] = useState<boolean>(false); // State untuk mengontrol alert logout
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const navigateTo = (path: string) => {
     history.push(path);
   };
 
   useEffect(() => {
-    // Periksa status autentikasi saat ini
+    // Periksa apakah pengguna sedang login
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsAuthenticated(!!user);
+      setIsLoggedIn(!!user);
+
+      // Ambil userRole dari localStorage setelah login
+      if (user) {
+        const role = localStorage.getItem("userRole");
+        setIsAdmin(role === "admin");
+      } else {
+        setIsAdmin(false);
+      }
     });
 
-    // Bersihkan subscription saat komponen di-unmount
-    return () => unsubscribe();
+    return () => unsubscribe(); // Bersihkan listener saat komponen di-unmount
   }, []);
 
   const handleLogout = async () => {
     await auth.signOut();
-    setIsAuthenticated(false);
-    history.push("/home"); // Redirect ke halaman Home setelah logout
+    localStorage.removeItem("userRole");
+    history.push("/signin");
   };
 
   return (
-    <>
-      <IonHeader>
-        <IonToolbar color="primary">
-          {/* Left side - Title */}
-          <IonTitle slot="start" className="ion-text-bold">
-            Jokka
-          </IonTitle>
+    <IonHeader>
+      <IonToolbar color="primary">
+        <IonTitle slot="start" className="ion-text-bold">
+          Jokka
+        </IonTitle>
 
-          {/* Center - Navigation Links */}
-          <IonButtons slot="start" style={{ marginLeft: "10px" }}>
-            <IonButton onClick={() => navigateTo("/home")}>Home</IonButton>
-            <IonButton onClick={() => navigateTo("/event")}>Event</IonButton>
-            <IonButton onClick={() => navigateTo("/destination")}>
-              Destination
+        <IonButtons slot="start" style={{ marginLeft: "10px" }}>
+          <IonButton onClick={() => navigateTo("/home")}>Home</IonButton>
+          <IonButton onClick={() => navigateTo("/event")}>Event</IonButton>
+          <IonButton onClick={() => navigateTo("/destination")}>
+            Destination
+          </IonButton>
+          <IonButton onClick={() => navigateTo("/food")}>Food</IonButton>
+          <IonButton onClick={() => navigateTo("/AboutUs")}>About Us</IonButton>
+          {isAdmin && (
+            <IonButton onClick={() => navigateTo("/admin-dashboard")}>
+              Dashboard
             </IonButton>
-            <IonButton onClick={() => navigateTo("/food")}>Food</IonButton>
-            <IonButton onClick={() => navigateTo("/AboutUs")}>
-              About Us
-            </IonButton>
-          </IonButtons>
+          )}
+        </IonButtons>
 
-          {/* Right side - Profile Icon and Sign In/Logout */}
-          <IonButtons slot="end">
-            {!isAuthenticated ? (
-              <IonButton onClick={() => navigateTo("/signin")}>
-                Sign In
+        <IonButtons slot="end">
+          {isLoggedIn ? (
+            <>
+              <IonButton onClick={handleLogout}>
+                <IonIcon icon={logOutOutline} slot="icon-only" />
               </IonButton>
-            ) : (
-              <>
-                <IonButton onClick={() => navigateTo("/profile")}>
-                  <IonIcon icon={personCircleOutline} slot="icon-only" />
-                </IonButton>
-                <IonButton onClick={() => setShowLogoutConfirm(true)}>
-                  Logout
-                </IonButton>
-              </>
-            )}
-          </IonButtons>
-        </IonToolbar>
-      </IonHeader>
-
-      {/* Alert for Logout Confirmation */}
-      <IonAlert
-        isOpen={showLogoutConfirm}
-        onDidDismiss={() => setShowLogoutConfirm(false)}
-        header={"Confirm Logout"}
-        message={"Are you sure you want to log out?"}
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-            handler: () => {
-              setShowLogoutConfirm(false);
-            },
-          },
-          {
-            text: "OK",
-            handler: () => {
-              handleLogout();
-            },
-          },
-        ]}
-      />
-    </>
+              <IonButton onClick={() => navigateTo("/profile")}>
+                <IonIcon icon={personCircleOutline} slot="icon-only" />
+              </IonButton>
+            </>
+          ) : (
+            <IonButton onClick={() => navigateTo("/signin")}>Sign In</IonButton>
+          )}
+        </IonButtons>
+      </IonToolbar>
+    </IonHeader>
   );
 };
 

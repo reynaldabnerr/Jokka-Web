@@ -21,8 +21,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import { auth, firestore } from "../firebaseConfig";
 import "./SignIn.css"; // Import file CSS
+import { doc, getDoc } from "firebase/firestore";
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -34,24 +35,39 @@ const SignIn: React.FC = () => {
 
   const handleSignIn = async () => {
     try {
-      setError(null);
-      await signInWithEmailAndPassword(auth, email, password);
-      setToastMessage("Sign in successful!");
-      setShowToast(true);
-      setTimeout(() => {
-        history.push("/home");
-      }, 1500);
-    } catch (err: any) {
-      if (
-        err.code === "auth/wrong-password" ||
-        err.code === "auth/user-not-found"
-      ) {
-        setToastMessage("Invalid email or password. Please try again.");
-      } else if (err.code === "auth/invalid-email") {
-        setToastMessage("Please enter a valid email address.");
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const userId = userCredential.user.uid;
+
+      // Mendapatkan peran pengguna dari Firestore
+      const userDoc = await getDoc(doc(firestore, "users", userId));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        const userRole = userData?.role;
+
+        // Simpan peran ke localStorage untuk digunakan di NavBar
+        localStorage.setItem("userRole", userRole || "user");
+
+        // Setel pesan toast
+        setToastMessage("Sign in successful!");
+        setShowToast(true);
+
+        // Redirect berdasarkan role pengguna
+        if (userRole === "admin") {
+          history.push("/home");
+        } else {
+          history.push("/home");
+        }
       } else {
-        setToastMessage("Error signing in. Please try again.");
+        setToastMessage("User data not found.");
+        setShowToast(true);
       }
+    } catch (err) {
+      console.error("Error during sign-in:", err);
+      setToastMessage("Error signing in. Please try again.");
       setShowToast(true);
     }
   };

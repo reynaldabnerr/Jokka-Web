@@ -53,19 +53,20 @@ const SignUp: React.FC = () => {
       );
       const userId = userCredential.user.uid;
 
-      // Save additional user data to Firestore
+      // Menyimpan data pengguna baru di Firestore dengan role
       await setDoc(doc(firestore, "users", userId), {
         name,
         phone_number: phoneNumber,
         email,
         profile_picture_url: profilePictureUrl,
+        role: "user", // Ubah ke "admin" jika ingin menetapkan role admin
       });
 
       setToastMessage("Account created successfully!");
       setShowToast(true);
 
       setTimeout(() => {
-        history.push("/signin");
+        history.push("/home");
       }, 1500);
     } catch (err: any) {
       if (err.code === "auth/email-already-in-use") {
@@ -78,6 +79,7 @@ const SignUp: React.FC = () => {
       }
     }
   };
+
 
   const goToSignIn = () => {
     history.push("/signin");
