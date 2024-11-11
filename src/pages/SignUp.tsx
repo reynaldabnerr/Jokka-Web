@@ -253,7 +253,7 @@ const SignUp: React.FC = () => {
           message={toastMessage}
           duration={2000}
           color="success"
-          position="top"
+          position="bottom"
         />
       </IonContent>
     </IonPage>
