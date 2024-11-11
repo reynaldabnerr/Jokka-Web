@@ -1,10 +1,10 @@
 import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import Home from "./pages/Home";
-import SignIn from "./pages/SignIn"; 
-import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
+import Home from "./pages/home/Home";
+import SignIn from "./pages/auth/SignIn";
+import SignUp from "./pages/auth/SignUp";
+import Dashboard from "./pages/admin/Dashboard";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";

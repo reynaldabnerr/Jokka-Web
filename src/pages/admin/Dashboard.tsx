@@ -15,7 +15,7 @@ import {
   IonLabel,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBar from "../../components/NavBar";
 
 const Dashboard: React.FC = () => {
   const history = useHistory();

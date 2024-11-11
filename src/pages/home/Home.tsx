@@ -8,7 +8,7 @@ import {
   IonButton,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBar from "../../components/NavBar";
 
 
 const Home: React.FC = () => {
