@@ -12,12 +12,13 @@ import {
   logOutOutline,
   menuOutline,
 } from "ionicons/icons";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import "./NavBar.css";
 
 const NavBar: React.FC = () => {
   const history = useHistory();
+  const location = useLocation(); // Gunakan useLocation untuk mendapatkan path saat ini
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -51,25 +52,49 @@ const NavBar: React.FC = () => {
   return (
     <IonHeader>
       <IonToolbar color="primary" className="navbar-toolbar">
-        {/* Tulisan Jokka di kiri */}
         <IonTitle slot="start" className="navbar-title">
           Jokka
         </IonTitle>
 
-        {/* Semua tombol navigasi rata kanan */}
         <IonButtons slot="end" className="navbar-end-buttons">
           <div className={`navbar-menu ${menuOpen ? "open" : ""}`}>
-            <IonButton onClick={() => navigateTo("/home")}>Home</IonButton>
-            <IonButton onClick={() => navigateTo("/event")}>Event</IonButton>
-            <IonButton onClick={() => navigateTo("/destination")}>
+            <IonButton
+              onClick={() => navigateTo("/home")}
+              className={location.pathname === "/home" ? "selected" : ""}
+            >
+              Home
+            </IonButton>
+            <IonButton
+              onClick={() => navigateTo("/event")}
+              className={location.pathname === "/event" ? "selected" : ""}
+            >
+              Event
+            </IonButton>
+            <IonButton
+              onClick={() => navigateTo("/destination")}
+              className={location.pathname === "/destination" ? "selected" : ""}
+            >
               Destination
             </IonButton>
-            <IonButton onClick={() => navigateTo("/food")}>Food</IonButton>
-            <IonButton onClick={() => navigateTo("/AboutUs")}>
+            <IonButton
+              onClick={() => navigateTo("/food")}
+              className={location.pathname === "/food" ? "selected" : ""}
+            >
+              Food
+            </IonButton>
+            <IonButton
+              onClick={() => navigateTo("/aboutus")}
+              className={location.pathname === "/aboutus" ? "selected" : ""}
+            >
               About Us
             </IonButton>
             {isAdmin && (
-              <IonButton onClick={() => navigateTo("/admin-dashboard")}>
+              <IonButton
+                onClick={() => navigateTo("/admin-dashboard")}
+                className={
+                  location.pathname === "/admin-dashboard" ? "selected" : ""
+                }
+              >
                 Dashboard
               </IonButton>
             )}
@@ -80,7 +105,7 @@ const NavBar: React.FC = () => {
                 </IonButton>
                 <IonButton
                   onClick={() => navigateTo("/profile")}
-                  className="profile-button"
+                  className={location.pathname === "/profile" ? "selected" : ""}
                 >
                   <IonIcon icon={personCircleOutline} className="icon-style" />
                 </IonButton>
@@ -88,14 +113,13 @@ const NavBar: React.FC = () => {
             ) : (
               <IonButton
                 onClick={() => navigateTo("/signin")}
-                className="signin-button"
+                className={location.pathname === "/signin" ? "selected" : ""}
               >
                 Sign In
               </IonButton>
             )}
           </div>
 
-          {/* Ikon menu untuk perangkat seluler */}
           <IonButton className="menu-icon" onClick={toggleMenu}>
             <IonIcon icon={menuOutline} />
           </IonButton>

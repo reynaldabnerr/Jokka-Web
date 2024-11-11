@@ -42,11 +42,13 @@
 /* Responsif untuk layar kecil */
 @media (max-width: 768px) {
   .navbar-menu {
-    display: none; /* Sembunyikan menu pada layar kecil */
+    display: none;
+    /* Sembunyikan menu pada layar kecil */
   }
 
   .menu-icon {
-    display: block; /* Tampilkan ikon menu hamburger */
+    display: block;
+    /* Tampilkan ikon menu hamburger */
   }
 
   /* Tampilkan menu sebagai dropdown ketika open di layar kecil */
@@ -59,7 +61,8 @@
     width: 100%;
     background-color: #4c4caf;
     padding: 10px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan untuk menu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Tambahkan bayangan untuk menu */
   }
 
   .navbar-menu.open ion-button {
@@ -69,5 +72,49 @@
     padding: 10px 0;
     font-size: 1.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Gaya tombol yang sedang aktif (selected) */
+.navbar-menu ion-button.selected {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Bayangan lebih kuat */
+  border-radius: 16px;
+  /* Rounded corners */
+}
+
+/* Efek hover yang halus dan elegan */
+.navbar-menu ion-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px) scale(1.05);
+  /* Angkat dan perbesar tombol sedikit */
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  /* Tambahkan bayangan */
+  color: #ffffff;
+  border-radius: 16px;
+}
+
+/* Efek dropdown yang lebih kontras pada layar kecil */
+@media (max-width: 768px) {
+  .navbar-menu.open ion-button.selected {
+    background-color: rgba(255, 255, 255, 0.35);
+    border-left: 5px solid #ffffff;
+    padding-left: 20px;
+    color: #ffffff;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+  }
+
+  /* Hover di dropdown untuk layar kecil */
+  .navbar-menu.open ion-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateX(10px);
+    /* Tambahkan animasi slide */
+    color: #ffffff;
   }
 }

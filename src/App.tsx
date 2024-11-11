@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import Dashboard from "./pages/admin/Dashboard";
+import Profile from "./pages/profile/Profile";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -24,6 +25,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import Us from "./pages/us/Us";
 
 setupIonicReact();
 
@@ -40,7 +42,13 @@ const App: React.FC = () => (
         <Route exact path="/signup">
           <SignUp />
         </Route>
+        <Route exact path="/aboutus">
+          <Us />
+        </Route>
         <Route path="/admin-dashboard" component={Dashboard} />
+        <Route exact path="/profile">
+          <Profile />
+        </Route>
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
