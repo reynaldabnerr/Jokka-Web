@@ -1,7 +1,7 @@
 /* Modern Variables */
 :root {
     --primary-gradient: linear-gradient(135deg, #1e3a8a, #2563eb);
-    --secondary-gradient: linear-gradient(135deg, #ef4444, #f97316);
+    --secondary-gradient: linear-gradient(135deg, #585858,#ba3030, #ff0000);
     --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     --hover-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
