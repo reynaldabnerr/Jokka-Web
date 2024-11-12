@@ -27,28 +27,24 @@ import "swiper/css/autoplay";
 
 const Home: React.FC = () => {
   const [carouselImages, setCarouselImages] = useState<string[]>([
-    "https://i.ibb.co.com/XX6Z1QN/pokemon.jpg",
-    "https://i.ibb.co.com/XX6Z1QN/pokemon.jpg",
-    "https://i.ibb.co.com/XX6Z1QN/pokemon.jpg",
+    "https://awsimages.detik.net.id/community/media/visual/2021/06/18/rammang-rammang_169.jpeg?w=650",
+    "https://awsimages.detik.net.id/community/media/visual/2021/06/18/rammang-rammang_169.jpeg?w=650",
+    "https://awsimages.detik.net.id/community/media/visual/2021/06/18/rammang-rammang_169.jpeg?w=650",
   ]);
   const [popularEvent, setPopularEvent] = useState<any[]>([]);
   const [popularPlaces, setPopularPlaces] = useState<any[]>([]);
   const [popularFood, setPopularFood] = useState<any[]>([]);
 
-  // Fungsi untuk mengambil data dari Firestore
   const fetchData = async () => {
     try {
-      // Mengambil data event
       const eventSnapshot = await getDocs(collection(firestore, "event"));
       const eventData = eventSnapshot.docs.map((doc) => doc.data());
       setPopularEvent(eventData);
 
-      // Mengambil data destination
       const placeSnapshot = await getDocs(collection(firestore, "destination"));
       const placeData = placeSnapshot.docs.map((doc) => doc.data());
       setPopularPlaces(placeData);
 
-      // Mengambil data food
       const foodSnapshot = await getDocs(collection(firestore, "food"));
       const foodData = foodSnapshot.docs.map((doc) => doc.data());
       setPopularFood(foodData);
@@ -89,16 +85,26 @@ const Home: React.FC = () => {
           </Swiper>
         </div>
 
+        {/* Dekoratif Text untuk Event Terkini */}
+        <div className="decorative-text">
+          <h2>Discover Amazing Events Near You</h2>
+          <p>Stay updated with the latest events happening around you.</p>
+        </div>
+
         {/* Popular Event */}
-        <IonCard>
+        <IonCard className="popular-card">
           <IonCardHeader>
             <IonCardTitle>Event Terkini</IonCardTitle>
+            <p className="section-description">
+              Ikuti beragam acara terkini di sekitar Anda untuk pengalaman tak
+              terlupakan.
+            </p>
           </IonCardHeader>
           <IonCardContent>
-            <IonGrid>
+            <IonGrid className="event-grid">
               <IonRow>
                 {popularEvent.map((event, index) => (
-                  <IonCol size="6" key={index}>
+                  <IonCol size="6" key={index} className="event-col">
                     <div className="event-card">
                       <IonImg src={event.eventimage} className="event-image" />
                       <IonLabel className="event-name">
@@ -112,16 +118,26 @@ const Home: React.FC = () => {
           </IonCardContent>
         </IonCard>
 
+        {/* Dekoratif Text untuk Tempat Populer */}
+        <div className="decorative-text">
+          <h2>Explore Popular Destinations</h2>
+          <p>Find the most popular and breathtaking destinations to visit.</p>
+        </div>
+
         {/* Popular Places */}
-        <IonCard>
+        <IonCard className="popular-card">
           <IonCardHeader>
             <IonCardTitle>Tempat Populer</IonCardTitle>
+            <p className="section-description">
+              Temukan destinasi wisata favorit untuk kunjungan yang mengesankan
+              dan penuh inspirasi.
+            </p>
           </IonCardHeader>
           <IonCardContent>
-            <IonGrid>
+            <IonGrid className="place-grid">
               <IonRow>
                 {popularPlaces.map((place, index) => (
-                  <IonCol size="6" key={index}>
+                  <IonCol size="6" key={index} className="place-col">
                     <div className="place-card">
                       <IonImg
                         src={place.destinationimage}
@@ -138,16 +154,26 @@ const Home: React.FC = () => {
           </IonCardContent>
         </IonCard>
 
+        {/* Dekoratif Text untuk Kuliner Populer */}
+        <div className="decorative-text">
+          <h2>Taste Popular Culinary Delights</h2>
+          <p>Indulge in the best local cuisine that the city has to offer.</p>
+        </div>
+
         {/* Popular Food */}
-        <IonCard>
+        <IonCard className="popular-card">
           <IonCardHeader>
             <IonCardTitle>Kuliner Populer</IonCardTitle>
+            <p className="section-description">
+              Nikmati aneka kuliner khas yang menggugah selera di destinasi
+              Anda.
+            </p>
           </IonCardHeader>
           <IonCardContent>
-            <IonGrid>
+            <IonGrid className="food-grid">
               <IonRow>
                 {popularFood.map((food, index) => (
-                  <IonCol size="6" key={index}>
+                  <IonCol size="6" key={index} className="food-col">
                     <div className="food-card">
                       <IonImg src={food.foodimage} className="food-image" />
                       <IonLabel className="food-name">{food.foodname}</IonLabel>
@@ -158,19 +184,16 @@ const Home: React.FC = () => {
             </IonGrid>
           </IonCardContent>
         </IonCard>
-
+        {/* Download App Section */}
         <IonCard className="download-card">
           <IonCardContent>
             <div className="download-container">
-              {/* Bagian Gambar */}
               <div className="image-section">
                 <IonImg
-                  src="https://uim-makassar.ac.id/wp-content/uploads/2022/07/1_jD-8s4iAF5IBBUi3LlMQog.png" // Ganti URL gambar dengan URL gambar asli
+                  src="https://uim-makassar.ac.id/wp-content/uploads/2022/07/1_jD-8s4iAF5IBBUi3LlMQog.png"
                   className="main-image"
                 />
               </div>
-
-              {/* Bagian Konten Teks */}
               <div className="content-section">
                 <h2>Dapatkan Aplikasi Jokka App</h2>
                 <div className="features">
@@ -182,10 +205,10 @@ const Home: React.FC = () => {
                   <span>Lebih Hemat</span>
                 </div>
                 <p className="qr-instruction">
-                  Scan QR Code untuk mengunduh aplikasi !
+                  Scan QR Code untuk mengunduh aplikasi!
                 </p>
                 <IonImg
-                  src="https://via.placeholder.com/120" // URL QR code asli
+                  src="https://via.placeholder.com/120"
                   className="qr-code"
                 />
               </div>
