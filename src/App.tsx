@@ -44,6 +44,9 @@ const App: React.FC = () => (
           <SignUp />
         </Route>
         <Route path="/admin-dashboard" component={Dashboard} />
+        <Route exact path="/aboutus">
+          <Us />
+        </Route>
         <Route exact path="/profile">
           <Profile />
         </Route>
