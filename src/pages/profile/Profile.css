@@ -1,0 +1,25 @@
+.profile-container {
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+.profile-picture-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.profile-avatar {
+    width: 120px;  /* Menyesuaikan ukuran gambar */
+    height: 120px;  /* Menyesuaikan ukuran gambar */
+    border: 4px solid #fff;  /* Menambahkan border putih di sekitar gambar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Menambahkan efek bayangan */
+}
+
+
+.profile-avatar img {
+    object-fit: cover; /* Memastikan gambar dipotong dengan baik agar sesuai dengan bentuk avatar */
+    border-radius: 50%;  /* Membuat gambar menjadi bulat */
+}
