@@ -17,7 +17,7 @@ import {
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, firestore } from "../../firebaseConfig";
+import { auth, firestore } from "../../api/firebaseConfig";
 import { collection, doc, setDoc } from "firebase/firestore";
 import {
   mailOutline,
@@ -79,7 +79,6 @@ const SignUp: React.FC = () => {
       }
     }
   };
-
 
   const goToSignIn = () => {
     history.push("/signin");

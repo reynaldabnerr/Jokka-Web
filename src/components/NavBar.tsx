@@ -13,7 +13,7 @@ import {
   menuOutline,
 } from "ionicons/icons";
 import { useHistory, useLocation } from "react-router-dom";
-import { auth } from "../firebaseConfig";
+import { auth } from "../api/firebaseConfig";
 import "./NavBar.css";
 
 const NavBar: React.FC = () => {

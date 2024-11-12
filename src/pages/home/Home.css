@@ -1,7 +1,7 @@
 /* Modern Variables */
 :root {
     --primary-gradient: linear-gradient(135deg, #1e3a8a, #2563eb);
-    --secondary-gradient: linear-gradient(135deg, #585858,#ba3030, #ff0000);
+    --secondary-gradient: linear-gradient(135deg, #585858, #ba3030, #ff0000);
     --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     --hover-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -64,7 +64,7 @@
 .place-image,
 .food-image {
     width: 100%;
-    height: 200px ;
+    height: 200px;
     object-fit: cover;
     border-top-left-radius: var(--border-radius-md);
     border-top-right-radius: var(--border-radius-md);
@@ -104,13 +104,17 @@
 }
 
 /* Grid Container Styling for Cards */
+/* Grid Container Styling for Cards */
 .event-grid,
 .place-grid,
 .food-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    /* Pastikan kartu tidak turun ke bawah */
+    overflow-x: auto;
+    /* Tambahkan scrollbar horizontal jika konten melampaui lebar */
     gap: 12px;
-    justify-content: left;
+    /* Jarak antar kartu */
     padding: 0 16px;
 }
 
@@ -124,6 +128,7 @@
     /* Tambahkan padding untuk estetika */
     border-radius: var(--border-radius-md);
 }
+
 /* Decorative Text Enhancements */
 .decorative-text h2 {
     font-size: 24px;
@@ -133,6 +138,7 @@
     position: relative;
     text-align: center;
 }
+
 .decorative-text p {
     font-size: 16px;
     font-weight: 400;
@@ -151,17 +157,7 @@
     position: relative;
 }
 
-.section-description:hover::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: #666;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    transition: all 0.4s ease;
-}
+
 
 /* Responsive Styling */
 @media (max-width: 768px) {
@@ -290,4 +286,35 @@
 .qr-code:hover {
     transform: scale(1.05);
     box-shadow: var(--hover-shadow);
+}
+
+
+/* card css */
+
+
+.card-header {
+    padding-bottom: 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: #000000;
+}
+
+.card-title {
+    flex: 1;
+}
+
+.section-description {
+    margin-top: 4px;
+    color: #555;
+    font-size: 14px;
+}
+
+.see-all-button {
+    color: #5e5e5e;
+    font-size: 16px;
 }

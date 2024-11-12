@@ -16,7 +16,7 @@ import {
   IonAccordion,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
-import { firestore } from "../../firebaseConfig"; // Import Firestore
+import { firestore } from "../../api/firebaseConfig"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";
 import { format } from "date-fns";
 import NavBar from "../../components/NavBar";

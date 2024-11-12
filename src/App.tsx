@@ -6,7 +6,7 @@ import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import Dashboard from "./pages/admin/Dashboard";
 import Profile from "./pages/profile/Profile";
-import EditProfile from './pages/profile/EditProfile';
+import EditProfile from "./pages/profile/EditProfile";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";

@@ -21,7 +21,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { auth, firestore } from "../../firebaseConfig";
+import { auth, firestore } from "../../api/firebaseConfig";
 import "./SignIn.css"; // Import file CSS
 import { doc, getDoc } from "firebase/firestore";
 
