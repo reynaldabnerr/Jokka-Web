@@ -159,23 +159,36 @@ const Home: React.FC = () => {
           </IonCardContent>
         </IonCard>
 
-        {/* App Download Section */}
         <IonCard className="download-card">
           <IonCardContent>
             <div className="download-container">
-              <div className="download-text">
-                <h2>Dapatkan Aplikasi Jokka App</h2>
-                <p>✓ Mudah Merencanakan Perjalanan</p>
-                <p>✓ Akses Dimanapun</p>
-                <div className="goals">
-                  <span>Mencapai Indonesia Emas 2045</span>
-                  <span>Memenuhi Poin-Poin SDG</span>
-                </div>
+              {/* Bagian Gambar */}
+              <div className="image-section">
+                <IonImg
+                  src="https://uim-makassar.ac.id/wp-content/uploads/2022/07/1_jD-8s4iAF5IBBUi3LlMQog.png" // Ganti URL gambar dengan URL gambar asli
+                  className="main-image"
+                />
               </div>
-              <IonImg
-                src="https://via.placeholder.com/150?text=QR+Code"
-                className="qr-code"
-              />
+
+              {/* Bagian Konten Teks */}
+              <div className="content-section">
+                <h2>Dapatkan Aplikasi Jokka App</h2>
+                <div className="features">
+                  <p>✓ Mudah Merencanakan Perjalanan</p>
+                  <p>✓ Akses Dimanapun</p>
+                </div>
+                <div className="goals">
+                  <span>Lebih Mudah</span>
+                  <span>Lebih Hemat</span>
+                </div>
+                <p className="qr-instruction">
+                  Scan QR Code untuk mengunduh aplikasi !
+                </p>
+                <IonImg
+                  src="https://via.placeholder.com/120" // URL QR code asli
+                  className="qr-code"
+                />
+              </div>
             </div>
           </IonCardContent>
         </IonCard>
