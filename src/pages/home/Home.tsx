@@ -208,7 +208,7 @@ const Home: React.FC = () => {
                   Scan QR Code untuk mengunduh aplikasi!
                 </p>
                 <IonImg
-                  src="https://via.placeholder.com/120"
+                  src="https://www.asdf.id/wp-content/uploads/2022/12/Landing-Page-Fixed-Asset-Management-TAG-Samurai-ASDFID.webp"
                   className="qr-code"
                 />
               </div>
