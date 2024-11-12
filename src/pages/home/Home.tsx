@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   IonContent,
   IonHeader,
@@ -8,113 +9,57 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonChip,
   IonLabel,
-  IonButton,
-  IonRow,
-  IonCol,
   IonImg,
   IonGrid,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
-import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import "./Home.css";
 import NavBar from "../../components/NavBar";
-// Import Swiper styles
+import { firestore } from "../../firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+import "./Home.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
 const Home: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Tempat Bersejarah");
+  const [carouselImages, setCarouselImages] = useState<string[]>([
+    "https://i.ibb.co.com/XX6Z1QN/pokemon.jpg",
+    "https://i.ibb.co.com/XX6Z1QN/pokemon.jpg",
+    "https://i.ibb.co.com/XX6Z1QN/pokemon.jpg",
+  ]);
+  const [popularEvent, setPopularEvent] = useState<any[]>([]);
+  const [popularPlaces, setPopularPlaces] = useState<any[]>([]);
+  const [popularFood, setPopularFood] = useState<any[]>([]);
 
-  const carouselImages = [
-    "https://via.placeholder.com/800x400?text=Hero+Image+1",
-    "https://via.placeholder.com/800x400?text=Hero+Image+2",
-    "https://via.placeholder.com/800x400?text=Hero+Image+3",
-  ];
-  const popularEvent = [
-    {
-      name: "Festival Budaya",
-      image: "https://via.placeholder.com/150?text=Festival+Budaya",
-    },
-    {
-      name: "Pameran Seni",
-      image: "https://via.placeholder.com/150?text=Pameran+Seni",
-    },
-    {
-      name: "Konser Musik",
-      image: "https://via.placeholder.com/150?text=Konser+Musik",
-    },
-    {
-      name: "Lomba Masak",
-      image: "https://via.placeholder.com/150?text=Lomba+Masak",
-    },
-    {
-      name: "Pertunjukan Teater",
-      image: "https://via.placeholder.com/150?text=Pertunjukan+Teater",
-    },
-    {
-      name: "Bazar Kuliner",
-      image: "https://via.placeholder.com/150?text=Bazar+Kuliner",
-    },
-  ];
+  // Fungsi untuk mengambil data dari Firestore
+  const fetchData = async () => {
+    try {
+      // Mengambil data event
+      const eventSnapshot = await getDocs(collection(firestore, "event"));
+      const eventData = eventSnapshot.docs.map((doc) => doc.data());
+      setPopularEvent(eventData);
 
-  const popularPlaces = [
-    {
-      name: "Benteng Rotterdam",
-      image: "https://via.placeholder.com/150?text=Benteng+Rotterdam",
-    },
-    {
-      name: "Pulau Samalona",
-      image: "https://via.placeholder.com/150?text=Pulau+Samalona",
-    },
-    {
-      name: "Center Point Indonesia",
-      image: "https://via.placeholder.com/150?text=Center+Point+Indonesia",
-    },
-    {
-      name: "Masjid 99 Kubah CPI",
-      image: "https://via.placeholder.com/150?text=Masjid+99+Kubah+CPI",
-    },
-    {
-      name: "Kampoeng Karst Rammang Rammang",
-      image:
-        "https://via.placeholder.com/150?text=Kampoeng+Karst+Rammang+Rammang",
-    },
-    {
-      name: "Pulau Samalona",
-      image: "https://via.placeholder.com/150?text=Pulau+Samalona",
-    },
-  ];
+      // Mengambil data destination
+      const placeSnapshot = await getDocs(collection(firestore, "destination"));
+      const placeData = placeSnapshot.docs.map((doc) => doc.data());
+      setPopularPlaces(placeData);
 
-  const popularFood = [
-    {
-      name: "Coto Makassar",
-      image: "path/to/coto.jpg",
-    },
-    {
-      name: "Pallu Bassa",
-      image: "path/to/pallu-bassa.jpg",
-    },
-    {
-      name: "Sop Konro",
-      image: "path/to/sop-konro.jpg",
-    },
-    {
-      name: "Pisang Epe",
-      image: "path/to/pisang-epe.jpg",
-    },
-    {
-      name: "Pisang Hijau",
-      image: "path/to/pisang-hijau.jpg",
-    },
-    {
-      name: "Ikan Bakar Parape",
-      image: "path/to/ikan-bakar.jpg",
-    },
-  ];
+      // Mengambil data food
+      const foodSnapshot = await getDocs(collection(firestore, "food"));
+      const foodData = foodSnapshot.docs.map((doc) => doc.data());
+      setPopularFood(foodData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <IonPage>
@@ -147,16 +92,18 @@ const Home: React.FC = () => {
         {/* Popular Event */}
         <IonCard>
           <IonCardHeader>
-            <IonCardTitle>Event terkini</IonCardTitle>
+            <IonCardTitle>Event Terkini</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>
             <IonGrid>
               <IonRow>
-                {popularEvent.map((Event, index) => (
+                {popularEvent.map((event, index) => (
                   <IonCol size="6" key={index}>
                     <div className="event-card">
-                      <IonImg src={Event.image} className="event-image" />
-                      <IonLabel className="event-name">{Event.name}</IonLabel>
+                      <IonImg src={event.eventimage} className="event-image" />
+                      <IonLabel className="event-name">
+                        {event.eventname}
+                      </IonLabel>
                     </div>
                   </IonCol>
                 ))}
@@ -176,8 +123,13 @@ const Home: React.FC = () => {
                 {popularPlaces.map((place, index) => (
                   <IonCol size="6" key={index}>
                     <div className="place-card">
-                      <IonImg src={place.image} className="place-image" />
-                      <IonLabel className="place-name">{place.name}</IonLabel>
+                      <IonImg
+                        src={place.destinationimage}
+                        className="place-image"
+                      />
+                      <IonLabel className="place-name">
+                        {place.destinationname}
+                      </IonLabel>
                     </div>
                   </IonCol>
                 ))}
@@ -197,8 +149,8 @@ const Home: React.FC = () => {
                 {popularFood.map((food, index) => (
                   <IonCol size="6" key={index}>
                     <div className="food-card">
-                      <IonImg src={food.image} className="food-image" />
-                      <IonLabel className="food-name">{food.name}</IonLabel>
+                      <IonImg src={food.foodimage} className="food-image" />
+                      <IonLabel className="food-name">{food.foodname}</IonLabel>
                     </div>
                   </IonCol>
                 ))}

@@ -89,24 +89,31 @@ const Dashboard: React.FC = () => {
   const handleFoodSubmit = async () => {
     try {
       if (
-        foodName &&
-        foodDescription &&
-        foodCategories &&
-        foodID &&
-        foodPrice &&
-        foodImage
+        foodName.trim() !== "" &&
+        foodDescription.trim() !== "" &&
+        foodCategories.trim() !== "" &&
+        foodID.trim() !== "" &&
+        foodPrice.trim() !== "" &&
+        foodImage.trim() !== ""
       ) {
+        // Menghilangkan "Rp" dan titik dari harga
+        const cleanedPrice = parseFloat(
+          foodPrice.replace(/[^0-9,-]+/g, "").replace(",", ".")
+        );
+
         await addDoc(collection(firestore, "food"), {
           foodname: foodName,
           fooddesc: foodDescription,
           foodcategories: foodCategories,
           foodid: foodID,
-          foodprice: foodPrice,
+          foodprice: cleanedPrice, // Simpan harga sebagai angka
           foodimage: foodImage,
         });
 
         setToastMessage("Food added successfully!");
         setShowToast(true);
+
+        // Reset field setelah submit
         setFoodName("");
         setFoodDescription("");
         setFoodCategories("");
@@ -277,8 +284,7 @@ const Dashboard: React.FC = () => {
                   <IonInput
                     value={foodPrice}
                     onIonChange={(e) => setFoodPrice(e.detail.value!)}
-                    placeholder="Enter food price"
-                    type="number"
+                    placeholder="Enter food price (e.g., Rp 25.000)"
                   />
                 </IonItem>
                 <IonItem>
