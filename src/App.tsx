@@ -27,6 +27,9 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import Us from "./pages/us/Us";
+import Destination from "./pages/destination/Destination";
+import Food from "./pages/food/Food";
+import Event from "./pages/event/Event"; // Add this line to import the Event component
 
 setupIonicReact();
 
@@ -53,6 +56,15 @@ const App: React.FC = () => (
         <Route exact path="/edit-profile">
           <EditProfile />
         </Route>
+        <Route exact path="/event">
+          <Event />
+        </Route>
+        <Route exact path="/food">
+          <Food />
+        </Route>
+        <Route exact path="/destination">
+          <Destination />
+        </Route>
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
@@ -60,5 +72,8 @@ const App: React.FC = () => (
     </IonReactRouter>
   </IonApp>
 );
+
+
+
 
 export default App;
