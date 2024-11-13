@@ -1,16 +1,8 @@
 // src/pages/us/AboutUs.tsx
 import {
   IonPage,
-  IonTitle,
   IonContent,
-  IonInput,
-  IonButton,
-  IonItem,
-  IonText,
-  IonToast,
   IonIcon,
-  IonCard,
-  IonCardContent,
 } from "@ionic/react";
 
 import NavBar from "../../components/NavBar";

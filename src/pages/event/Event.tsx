@@ -5,7 +5,6 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
 import NavBar from "../../components/NavBar";

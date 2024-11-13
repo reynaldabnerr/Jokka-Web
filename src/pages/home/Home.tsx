@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { IonContent, IonPage } from "@ionic/react";
 import NavBar from "../../components/NavBar";
 import Carousel from "../../components/Carousel";
-import Card from "../../components/PopularCard";
 import { fetchEvents, fetchPlaces, fetchFood } from "../../api/dataService";
 import "./Home.css";
 import DownloadCard from "../../components/DownloadCard";
