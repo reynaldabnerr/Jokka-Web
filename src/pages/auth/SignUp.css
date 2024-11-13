@@ -30,6 +30,7 @@
 .input-field {
   padding-left: 100px;
   font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
   width: 100%;
 }
 
@@ -37,6 +38,7 @@
 .icon-style {
   margin-right: 8px;
   font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Style untuk container tombol */
@@ -77,5 +79,6 @@
 
 .custom-input-field {
   font-size: 16px !important;
+  font-family: 'Montserrat', sans-serif;
   padding-left: 10px !important;
 }
