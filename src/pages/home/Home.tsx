@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { IonContent, IonPage } from "@ionic/react";
 import NavBar from "../../components/NavBar";
 import Carousel from "../../components/Carousel";
-import Card from "../../components/Card";
+import Card from "../../components/PopularCard";
 import { fetchEvents, fetchPlaces, fetchFood } from "../../api/dataService";
 import "./Home.css";
 import DownloadCard from "../../components/DownloadCard";
+import PopularCard from "../../components/PopularCard";
 
 const Home: React.FC = () => {
   const [carouselImages, setCarouselImages] = useState<string[]>([
@@ -42,9 +43,10 @@ const Home: React.FC = () => {
           <p>Stay updated with the latest events happening around you.</p>
         </div>
 
-        <Card
+        <PopularCard
           title="Event Terkini"
           description="Ikuti beragam acara terkini di sekitar Anda untuk pengalaman tak terlupakan."
+          targetUrl="/event"
         >
           <div className="event-grid">
             {popularEvent.map((event, index) => (
@@ -58,11 +60,12 @@ const Home: React.FC = () => {
               </div>
             ))}
           </div>
-        </Card>
+        </PopularCard>
 
-        <Card
+        <PopularCard
           title="Tempat Populer"
           description="Temukan destinasi wisata favorit untuk kunjungan yang mengesankan dan penuh inspirasi."
+          targetUrl="/destination"
         >
           <div className="place-grid">
             {popularPlaces.map((place, index) => (
@@ -76,11 +79,12 @@ const Home: React.FC = () => {
               </div>
             ))}
           </div>
-        </Card>
+        </PopularCard>
 
-        <Card
+        <PopularCard
           title="Kuliner Populer"
           description="Nikmati aneka kuliner khas yang menggugah selera di destinasi Anda."
+          targetUrl="/food"
         >
           <div className="food-grid">
             {popularFood.map((food, index) => (
@@ -90,7 +94,7 @@ const Home: React.FC = () => {
               </div>
             ))}
           </div>
-        </Card>
+        </PopularCard>
 
         <DownloadCard />
       </IonContent>

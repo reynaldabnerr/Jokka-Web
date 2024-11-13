@@ -7,20 +7,30 @@ import {
   IonButton,
   IonIcon,
 } from "@ionic/react";
-import { arrowForward } from "ionicons/icons"; // Import icon
+import { arrowForward } from "ionicons/icons";
 
-interface CardProps {
+interface PopularCardProps {
   title: string;
   description: string;
-  children: ReactNode;
+  targetUrl: string; // URL tujuan navigasi
+  children?: ReactNode;
 }
 
-const Card: React.FC<CardProps> = ({ title, description, children }) => (
+const PopularCard: React.FC<PopularCardProps> = ({
+  title,
+  description,
+  targetUrl,
+  children,
+}) => (
   <IonCard className="popular-card">
     <IonCardHeader className="card-header">
       <div className="header-content">
         <IonCardTitle className="card-title">{title}</IonCardTitle>
-        <IonButton fill="clear" className="see-all-button" routerLink="/all">
+        <IonButton
+          fill="clear"
+          className="see-all-button"
+          routerLink={targetUrl}
+        >
           <IonIcon icon={arrowForward} slot="icon-only" />
         </IonButton>
       </div>
@@ -30,4 +40,4 @@ const Card: React.FC<CardProps> = ({ title, description, children }) => (
   </IonCard>
 );
 
-export default Card;
+export default PopularCard;
