@@ -14,7 +14,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => (
     <Swiper
       modules={[Autoplay, Pagination]}
       pagination={{ clickable: true }}
-      autoplay={{ delay: 3000 }}
+      autoplay={{ delay: 2000 }}
       loop={true}
     >
       {images.map((image, index) => (

@@ -62,6 +62,11 @@ const Home: React.FC = () => {
           </div>
         </PopularCard>
 
+        <div className="decorative-text">
+          <h2>Discover Amazing Places Near You</h2>
+          <p>Stay updated with the latest events happening around you.</p>
+        </div>
+
         <PopularCard
           title="Tempat Populer"
           description="Temukan destinasi wisata favorit untuk kunjungan yang mengesankan dan penuh inspirasi."
@@ -80,6 +85,11 @@ const Home: React.FC = () => {
             ))}
           </div>
         </PopularCard>
+
+        <div className="decorative-text">
+          <h2>Discover Delicious Food Near You</h2>
+          <p>Stay updated with the latest events happening around you.</p>
+        </div>
 
         <PopularCard
           title="Kuliner Populer"

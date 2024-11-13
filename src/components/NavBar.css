@@ -1,4 +1,5 @@
 /* NavBar.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 .navbar-toolbar {
   background: linear-gradient(135deg, #4c4caf, #8e44ad);
@@ -10,6 +11,7 @@
   font-weight: bold;
   color: #ffffff;
   margin-left: 16px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Rata kanan untuk semua tombol navigasi */
@@ -31,12 +33,14 @@
   display: none;
   color: #ffffff;
   font-size: 1.8rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Atur ikon agar lebih besar dan kontras */
 .icon-style {
   font-size: 24px;
   color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Responsif untuk layar kecil */
@@ -71,6 +75,7 @@
     color: #ffffff;
     padding: 10px 0;
     font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
   }
 }
@@ -80,6 +85,7 @@
   background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
   transition: all 0.3s ease;
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(168, 168, 168, 0.2);
