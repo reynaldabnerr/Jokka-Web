@@ -1,0 +1,16 @@
+/* Menambahkan padding lebih pada tombol dan margin pada form */
+.ion-padding {
+    padding: 20px;
+}
+
+.ion-margin-top {
+    margin-top: 20px;
+}
+
+.ion-text-center {
+    text-align: center;
+}
+
+.ion-item {
+    margin-bottom: 15px;
+}

@@ -46,7 +46,7 @@ const Profile: React.FC<ProfileProps> = ({ isProfileUpdated }) => {
           name: userDoc.data().name,
           email: userDoc.data().email,
           phone: userDoc.data().phone_number,
-          profilePicture: userDoc.data().profile_picture_url,
+          profilePicture: userDoc.data().profile_picture_url || "", // default to empty if not set
         });
       } else {
         setUserData({
@@ -119,7 +119,7 @@ const Profile: React.FC<ProfileProps> = ({ isProfileUpdated }) => {
                   <IonImg
                     src={
                       userData.profilePicture ||
-                      "https://www.example.com/default-profile.jpg"
+                      "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg" // default image
                     }
                   />
                 </IonAvatar>
@@ -142,6 +142,8 @@ const Profile: React.FC<ProfileProps> = ({ isProfileUpdated }) => {
 
               <IonButton
                 expand="full"
+                shape="round"
+                color="primary"
                 onClick={() => history.push("/edit-profile")}
                 className="ion-margin-top"
               >
@@ -149,8 +151,9 @@ const Profile: React.FC<ProfileProps> = ({ isProfileUpdated }) => {
               </IonButton>
 
               <IonButton
-                color="danger"
+                color="secondary"
                 expand="full"
+                shape="round"
                 onClick={() => setShowAlert(true)}
                 className="ion-margin-top"
               >

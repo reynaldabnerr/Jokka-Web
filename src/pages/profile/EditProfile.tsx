@@ -48,7 +48,7 @@ const EditProfile: React.FC = () => {
             name: userDoc.data().name || "",
             email: userDoc.data().email || "",
             phone: userDoc.data().phone_number || "",
-            profilePicture: userDoc.data().profile_picture_url || "",
+            profilePicture: userDoc.data().profile_picture_url || "", // If not set, it will be an empty string
           });
         }
       } else {
@@ -97,17 +97,19 @@ const EditProfile: React.FC = () => {
         <div className="edit-profile-container">
           <h2>Edit Your Profile</h2>
 
+          {/* Avatar with fallback image if profile picture URL is empty */}
           <div className="edit-profile-avatar">
             <IonAvatar>
               <IonImg
                 src={
                   userData.profilePicture ||
-                  "https://www.example.com/default-profile.jpg"
+                  "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg" // Default image if no profile picture
                 }
               />
             </IonAvatar>
           </div>
 
+          {/* Profile Form Fields */}
           <div className="profile-field-container">
             <div className="profile-field-label">Name</div>
             <IonInput
@@ -139,9 +141,14 @@ const EditProfile: React.FC = () => {
             />
           </div>
 
-          <button className="rounded-save-button" onClick={handleSaveChanges}>
+          <IonButton
+            expand="full"
+            shape="round"
+            color="primary"
+            onClick={handleSaveChanges}
+          >
             Save Changes
-          </button>
+          </IonButton>
 
           <IonToast
             isOpen={showToast}

@@ -69,6 +69,7 @@
 .signup-button-style {
   margin: 0;
   height: 30px;
+  font-weight: bold;
 }
 
 /* Custom input style */

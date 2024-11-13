@@ -5,10 +5,10 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonInput,
   IonButton,
   IonItem,
   IonLabel,
+  IonInput,
   IonText,
   IonToast,
   IonIcon,
@@ -24,6 +24,8 @@ import {
   lockClosedOutline,
   personOutline,
   callOutline,
+  pieChart,
+  link,
 } from "ionicons/icons";
 import "./SignUp.css"; // Import file CSS
 
@@ -59,7 +61,7 @@ const SignUp: React.FC = () => {
         name,
         phone_number: phoneNumber,
         email,
-        profile_picture_url: profilePictureUrl,
+        profile_picture_url: profilePictureUrl, // Menyimpan profile picture URL
         role: "user", // Ubah ke "admin" jika ingin menetapkan role admin
       });
 
@@ -166,6 +168,28 @@ const SignUp: React.FC = () => {
                     value={email}
                     placeholder="Enter your email"
                     onIonChange={(e) => setEmail(e.detail.value!)}
+                    className="input-field custom-input-field"
+                  />
+                </IonItem>
+              </div>
+
+              {/* Profile Picture URL Input */}
+              <div className="custom-input">
+                <IonItem
+                  lines="none"
+                  className="ion-margin-bottom input-container"
+                >
+                  <IonIcon
+                    icon={link}
+                    slot="start"
+                    color="primary"
+                    className="icon-style"
+                  />
+                  <IonInput
+                    type="text"
+                    value={profilePictureUrl}
+                    placeholder="Enter profile picture URL"
+                    onIonChange={(e) => setProfilePictureUrl(e.detail.value!)}
                     className="input-field custom-input-field"
                   />
                 </IonItem>

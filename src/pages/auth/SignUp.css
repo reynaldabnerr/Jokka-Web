@@ -1,4 +1,6 @@
 /* SignUp.css */
+/* SignUp.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 /* Style untuk container utama */
 .content-container {
@@ -15,6 +17,8 @@
   margin: 0 auto;
   border-radius: 24px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
 /* Style untuk container input */
@@ -69,6 +73,7 @@
 .signup-button-style {
   margin: 0;
   height: 30px;
+  font-weight: 600;
 }
 
 /* Custom input style */
@@ -81,4 +86,56 @@
   font-size: 16px !important;
   font-family: 'Montserrat', sans-serif;
   padding-left: 10px !important;
+}
+/* Apply Montserrat font to the entire page */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f5f5f5;
+  /* Optional: Set background color */
+  color: #333;
+  /* Optional: Set text color */
+}
+
+/* Customize other styles to apply font */
+h2,
+h1,
+p,
+IonText {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.signup-card {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Customize input and button fonts */
+.input-field,
+.button-style,
+.signup-button-style {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.button-container,
+.signup-container {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.custom-input-field {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.ion-text-center {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+}
+.ion-text-muted {
+  color: #666;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.ion-no-margin {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
 }
