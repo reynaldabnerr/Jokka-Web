@@ -1,0 +1,33 @@
+/* Carousel2.css */
+.carousel2-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .carousel2-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .carousel2-info {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .carousel2-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .carousel2-date {
+    font-size: 14px;
+    color: #666;
+  }
+  

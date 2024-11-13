@@ -1,0 +1,236 @@
+.event-container {
+    padding: 50px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0px;
+    color: #333;
+}
+
+.section-title-categories {
+    margin-top: 100px;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Pastikan lebar penuh */
+    max-width: 100%; /* Agar tidak melebihi ukuran layar */
+    height: auto;
+}
+
+.carousel-container .swiper-wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    height: auto;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    transform: translateY(-50%);
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+
+
+/* Categories Buttons Styles */
+.categories-buttons {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
+.category-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-button.active {
+    background-color: #dc1e1e;
+    color: white;
+}
+
+.category-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 8px;
+    background-color: rgb(244, 244, 244);
+    border: 10px;
+    border-radius: 10px;
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+/* Location Images Styles */
+.category-images {
+    margin: 20px 0;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.category-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.category-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    padding: 12px;
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+    background-color: rgb(244, 244, 244);
+    border-radius: 10px;
+}
+/* Rest of the existing styles... */
+.section-description {
+    color: #666;
+    margin: 16px;
+    line-height: 1.5;
+}
+
+.trending-card {
+    height: 200px;
+    width: 100%;
+    margin: 0;
+}
+
+.trending-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.special-event-card {
+    margin: 0;
+    height: 100%;
+}
+
+.special-event-background{
+    margin-top: 180px;
+    background-color: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.special-event-card ion-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.special-event-card ion-card-content h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.special-event-card ion-card-content p {
+    color: #666;
+    font-size: 14px;
+    padding: 20px;
+}
+
+.download-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://img.inews.co.id/media/1200/files/inews_new/2022/01/05/Pantai_Losari.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 40px 20px;
+    margin: 40px -16px -16px -16px;
+}
+
+.download-content {
+    text-align: center;
+}
+
+.download-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.download-buttons ion-button {
+    --padding-start: 20px;
+    --padding-end: 20px;
+}
+
+.qr-code {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.qr-code ion-icon {
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+
+@media (max-width: 768px) {
+    .categories-buttons {
+        padding: 8px;
+    }
+
+    .category-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .location-image {
+        height: 150px;
+    }
+
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}

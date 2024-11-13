@@ -1,6 +1,6 @@
 import React from "react";
 import { IonCard, IonCardContent, IonImg } from "@ionic/react";
-// Pastikan Anda memiliki CSS ini atau sesuaikan dengan gaya yang diinginkan
+import "./DownloadCard.css";
 
 const DownloadCard: React.FC = () => {
   return (
@@ -15,24 +15,27 @@ const DownloadCard: React.FC = () => {
             />
           </div>
 
-          {/* Bagian Konten Teks */}
+          {/* Bagian Konten Teks dan QR */}
           <div className="content-section">
-            <h2>Dapatkan Aplikasi Jokka App</h2>
-            <div className="features">
-              <p>✓ Mudah Merencanakan Perjalanan</p>
-              <p>✓ Akses Dimanapun</p>
+            <div className="content-text">
+              <h2>Dapatkan Aplikasi Jokka App</h2>
+              <div className="features">
+                <span>✓ Mudah Merencanakan Perjalanan</span>
+                <span>✓ Akses Dimanapun</span>
+              </div>
+              <div className="goals">
+                <div className="goal-item">Mencapai Indonesia Emas 2045</div>
+                <div className="goal-item">Memenuhi Poin-Poin SDG</div>
+              </div>
+              <p className="qr-instruction">
+                Scan QR Code untuk mengunduh aplikasi!
+              </p>
             </div>
-            <div className="goals">
-              <span>Lebih Mudah</span>
-              <span>Lebih Hemat</span>
+            <div className="content-section">
+              <IonImg
+                src="https://sennastudiodesign.com/wp-content/uploads/2023/03/Kegunaan-barcode-dan-QR-Code-dalam-desain-kemasan-produk-1.jpg "
+                className="qr-code" />
             </div>
-            <p className="qr-instruction">
-              Scan QR Code untuk mengunduh aplikasi!
-            </p>
-            <IonImg
-              src="https://sennastudiodesign.com/wp-content/uploads/2023/03/Kegunaan-barcode-dan-QR-Code-dalam-desain-kemasan-produk-1.jpg"
-              className="qr-code"
-            />
           </div>
         </div>
       </IonCardContent>
