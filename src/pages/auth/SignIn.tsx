@@ -15,7 +15,7 @@ import {
   IonCardContent,
 } from "@ionic/react";
 import { logoGoogle, mailOutline, lockClosedOutline } from "ionicons/icons";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -32,6 +32,7 @@ const SignIn: React.FC = () => {
   const [showToast, setShowToast] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>("");
   const history = useHistory();
+  const location = useLocation();
 
   const handleSignIn = async () => {
     try {
@@ -101,7 +102,6 @@ const SignIn: React.FC = () => {
       setError("Error: " + err.message);
     }
   };
-
 
   const goToSignUp = () => {
     history.push("/signup");

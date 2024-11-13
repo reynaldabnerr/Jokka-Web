@@ -9,28 +9,34 @@ import {
   IonAvatar,
   IonImg,
   IonSpinner,
+  IonToast,
+  IonAlert,
 } from "@ionic/react";
 import { useHistory, useLocation } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { firestore } from "../../api/firebaseConfig";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, deleteUser } from "firebase/auth";
 import NavBar from "../../components/NavBar";
-import "./Profile.css"; // Import custom CSS for profile styling
+import "./Profile.css";
 
-const Profile: React.FC = () => {
+interface ProfileProps {
+  isProfileUpdated: boolean;
+}
+
+const Profile: React.FC<ProfileProps> = ({ isProfileUpdated }) => {
   const history = useHistory();
   const location = useLocation();
-
-  // State untuk menyimpan data pengguna
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     phone: "",
     profilePicture: "",
   });
-  const [isLoading, setIsLoading] = useState(true); // State untuk melacak loading
+  const [isLoading, setIsLoading] = useState(true);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
-  // Fungsi untuk mengambil data pengguna dari Firestore
   const fetchUserData = async (userId: string) => {
     setIsLoading(true);
     try {
@@ -43,7 +49,6 @@ const Profile: React.FC = () => {
           profilePicture: userDoc.data().profile_picture_url,
         });
       } else {
-        console.log("No such document!");
         setUserData({
           name: "Unknown User",
           email: "No Email Available",
@@ -63,28 +68,34 @@ const Profile: React.FC = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         fetchUserData(user.uid);
-      } else {
-        setUserData({
-          name: "",
-          email: "",
-          phone: "",
-          profilePicture: "",
-        });
       }
     });
-    return () => unsubscribe();
-  }, []);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    if (searchParams.get("refresh") === "true") {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      if (user) {
-        fetchUserData(user.uid);
+    if (location.search.includes("updated=true")) {
+      fetchUserData(auth.currentUser?.uid || "");
+    }
+
+    return () => unsubscribe();
+  }, [location.search]);
+
+  const handleDeleteAccount = async () => {
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const userId = currentUser.uid;
+      try {
+        await deleteDoc(doc(firestore, "users", userId));
+        await deleteUser(currentUser);
+        setToastMessage("Account deleted successfully.");
+        setShowToast(true);
+        setTimeout(() => history.push("/home"), 1500);
+      } catch (error) {
+        console.error("Error deleting account:", error);
+        setToastMessage("Error deleting account. Please try again.");
+        setShowToast(true);
       }
     }
-  }, [location.search]);
+  };
 
   return (
     <IonPage>
@@ -103,7 +114,6 @@ const Profile: React.FC = () => {
             <IonSpinner name="crescent" />
           ) : (
             <>
-              {/* Tampilkan foto profil di tengah */}
               <div className="profile-picture-container">
                 <IonAvatar className="profile-avatar">
                   <IonImg
@@ -115,34 +125,69 @@ const Profile: React.FC = () => {
                 </IonAvatar>
               </div>
 
-              {/* Field untuk Nama */}
               <div className="profile-field-container">
                 <div className="profile-field-label">Name</div>
                 <div className="profile-field-value">{userData.name}</div>
               </div>
 
-              {/* Field untuk Email */}
               <div className="profile-field-container">
                 <div className="profile-field-label">Email</div>
                 <div className="profile-field-value">{userData.email}</div>
               </div>
 
-              {/* Field untuk Nomor Telepon */}
               <div className="profile-field-container">
                 <div className="profile-field-label">Phone</div>
                 <div className="profile-field-value">{userData.phone}</div>
               </div>
 
-              {/* Tombol untuk mengedit profil */}
-              <button
-                className="ion-button"
+              <IonButton
+                expand="full"
                 onClick={() => history.push("/edit-profile")}
+                className="ion-margin-top"
               >
                 Edit Profile
-              </button>
+              </IonButton>
+
+              <IonButton
+                color="danger"
+                expand="full"
+                onClick={() => setShowAlert(true)}
+                className="ion-margin-top"
+              >
+                Delete Account
+              </IonButton>
+
+              <IonAlert
+                isOpen={showAlert}
+                onDidDismiss={() => setShowAlert(false)}
+                header={"Delete Account"}
+                message={
+                  "Are you sure you want to delete your account? This action cannot be undone."
+                }
+                buttons={[
+                  {
+                    text: "Cancel",
+                    role: "cancel",
+                    handler: () => setShowAlert(false),
+                  },
+                  {
+                    text: "Delete",
+                    handler: handleDeleteAccount,
+                  },
+                ]}
+              />
             </>
           )}
         </div>
+
+        <IonToast
+          isOpen={showToast}
+          onDidDismiss={() => setShowToast(false)}
+          message={toastMessage}
+          duration={1500}
+          color="success"
+          position="bottom"
+        />
       </IonContent>
     </IonPage>
   );

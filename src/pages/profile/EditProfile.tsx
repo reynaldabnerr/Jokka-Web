@@ -76,7 +76,7 @@ const EditProfile: React.FC = () => {
         });
 
         setShowToast(true);
-        setTimeout(() => history.push("/profile?refresh=true"), 1000);
+        setTimeout(() => history.push("/profile?updated=true"), 1000);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -108,7 +108,6 @@ const EditProfile: React.FC = () => {
             </IonAvatar>
           </div>
 
-          {/* Field yang bisa diedit */}
           <div className="profile-field-container">
             <div className="profile-field-label">Name</div>
             <IonInput
@@ -129,7 +128,6 @@ const EditProfile: React.FC = () => {
             />
           </div>
 
-          {/* Field untuk URL gambar profil */}
           <div className="profile-field-container">
             <div className="profile-field-label">Profile Picture URL</div>
             <IonInput
@@ -141,15 +139,10 @@ const EditProfile: React.FC = () => {
             />
           </div>
 
-          {/* Tombol Simpan */}
-          <button
-            className="rounded-save-button"
-            onClick={handleSaveChanges}
-          >
+          <button className="rounded-save-button" onClick={handleSaveChanges}>
             Save Changes
           </button>
 
-          {/* Toast Pesan Sukses/Error */}
           <IonToast
             isOpen={showToast}
             message="Profile updated successfully!"

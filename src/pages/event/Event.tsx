@@ -6,11 +6,12 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import NavBar from "../../components/NavBar";
 
 const Event: React.FC = () => {
-  const history = useHistory();
+    const history = useHistory();
+    const location = useLocation();
 
   return (
     <IonPage>
