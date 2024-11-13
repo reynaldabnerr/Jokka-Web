@@ -15,7 +15,7 @@ import {
   IonCard,
   IonCardContent,
 } from "@ionic/react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../../api/firebaseConfig";
 import { collection, doc, setDoc } from "firebase/firestore";
@@ -38,6 +38,7 @@ const SignUp: React.FC = () => {
   const [showToast, setShowToast] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>("");
   const history = useHistory();
+  const location = useLocation();
 
   const handleSignUp = async () => {
     if (password !== confirmPassword) {

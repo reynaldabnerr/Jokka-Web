@@ -1,4 +1,3 @@
-// src/pages/CompleteProfile.tsx
 import React, { useState } from "react";
 import {
   IonPage,
@@ -17,7 +16,11 @@ import { doc, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useHistory } from "react-router-dom";
 
-const CompleteProfile: React.FC = () => {
+interface CompleteProfileProps {
+  onComplete: () => void;
+}
+
+const CompleteProfile: React.FC<CompleteProfileProps> = ({ onComplete }) => {
   const history = useHistory();
   const [name, setName] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
@@ -32,12 +35,13 @@ const CompleteProfile: React.FC = () => {
       const userRef = doc(firestore, "users", userId);
       await setDoc(userRef, {
         name,
-        phoneNumber,
+        phone_number: phoneNumber,
         email: currentUser.email,
-        role: "user", // Default role for new users
+        role: "user",
       });
       setShowToast(true);
-      setTimeout(() => history.push("/home"), 1500); // Redirect to home after saving
+      onComplete(); // Notify App that profile has been updated
+      setTimeout(() => history.push("/home"), 1500);
     }
   };
 

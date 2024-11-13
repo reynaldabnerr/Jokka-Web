@@ -6,6 +6,7 @@ import { fetchEvents, fetchPlaces, fetchFood } from "../../api/dataService";
 import "./Home.css";
 import DownloadCard from "../../components/DownloadCard";
 import PopularCard from "../../components/PopularCard";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Home: React.FC = () => {
   const [carouselImages, setCarouselImages] = useState<string[]>([
@@ -17,6 +18,8 @@ const Home: React.FC = () => {
   const [popularEvent, setPopularEvent] = useState<any[]>([]);
   const [popularPlaces, setPopularPlaces] = useState<any[]>([]);
   const [popularFood, setPopularFood] = useState<any[]>([]);
+  const history = useHistory();
+  const location = useLocation();
 
   const fetchData = async () => {
     try {
