@@ -30,6 +30,7 @@ import Us from "./pages/us/Us";
 import Destination from "./pages/destination/Destination";
 import Food from "./pages/food/Food";
 import Event from "./pages/event/Event"; // Add this line to import the Event component
+import CompleteProfile from "./pages/auth/CompleteProfile";
 
 setupIonicReact();
 
@@ -65,6 +66,7 @@ const App: React.FC = () => (
         <Route exact path="/destination">
           <Destination />
         </Route>
+        <Route path="/complete-profile" component={CompleteProfile} exact />
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>

@@ -75,16 +75,33 @@ const SignIn: React.FC = () => {
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
-      setToastMessage("Signed in with Google successfully!");
-      setShowToast(true);
-      setTimeout(() => {
-        history.push("/home");
-      }, 1500);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Cek apakah data pengguna sudah ada di Firestore
+      const userDocRef = doc(firestore, "users", user.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (!userDoc.exists()) {
+        // Jika data pengguna tidak ada, arahkan ke halaman CompleteProfile
+        setToastMessage("Welcome! Please complete your profile.");
+        setShowToast(true);
+        setTimeout(() => {
+          history.push("/complete-profile");
+        }, 1500);
+      } else {
+        // Jika data sudah ada, langsung arahkan ke halaman home
+        setToastMessage("Signed in with Google successfully!");
+        setShowToast(true);
+        setTimeout(() => {
+          history.push("/home");
+        }, 1500);
+      }
     } catch (err: any) {
       setError("Error: " + err.message);
     }
   };
+
 
   const goToSignUp = () => {
     history.push("/signup");
