@@ -148,13 +148,7 @@ const Event: React.FC = () => {
           <div className='special-event-background'>
           <h2 className="section-title">Jelajahi Event Luar Biasa</h2>
           <p section-title-special>
-          Maksimalkan potensi pengorganisasian berbagai festival yang menarik dan unik 
-          untuk memikat minat wisatawan lokal maupun internasional. Melalui kolaborasi 
-          yang kuat antara komunitas lokal dan pemangku kepentingan, event-event ini dirancang 
-          untuk merayakan budaya, seni, dan keindahan alam yang khas dari setiap daerah. 
-          Pengunjung dapat merasakan pengalaman yang tak terlupakan, mulai dari parade budaya, 
-          konser musik, hingga kegiatan olahraga dan seni interaktif. Bergabunglah dalam perayaan 
-          ini dan temukan keajaiban yang hanya bisa ditawarkan oleh kekayaan budaya lokal.
+            Maksimalkan pengorganisasian berbagai festival yang menarik bagi wisatawan lokal dan internasional.
           </p>
           <IonGrid>
             <IonRow>
