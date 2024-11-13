@@ -29,7 +29,7 @@ const slideOpts = {
 };
 
 const Event: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All"); // Default kategori "All"
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   // Daftar kategori event yang dipilih, termasuk "All"
   const eventCategories = [
@@ -82,7 +82,7 @@ const Event: React.FC = () => {
       <IonContent>
         <div className="event-container">
           {/* Event Trending Section */}
-          <h2 className="section-title">Event Trending</h2>
+          {/* <h2 className="section-title">Event Trending</h2> */}
           <div className="carousel-container">
             <div
               className="carousel-arrow left-arrow"
@@ -147,7 +147,7 @@ const Event: React.FC = () => {
           {/* Special Events Section (Without Category Filter) */}
           <div className="special-event-background">
             <h2 className="section-title">Jelajahi Event Luar Biasa</h2>
-            <p section-title-special>
+            <p className="section-title-special">
               Maksimalkan pengorganisasian berbagai festival yang menarik bagi
               wisatawan lokal dan internasional.
             </p>

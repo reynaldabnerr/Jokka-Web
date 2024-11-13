@@ -12,9 +12,9 @@ import PopularFoodCard from "../../components/PopularCard/PopularFoodCard";
 
 const Home: React.FC = () => {
   const [carouselImages, setCarouselImages] = useState<string[]>([
-    "https://awsimages.detik.net.id/community/media/visual/2021/06/18/rammang-rammang_169.jpeg?w=650",
-    "https://awsimages.detik.net.id/community/media/visual/2021/06/18/rammang-rammang_169.jpeg?w=650",
-    "https://awsimages.detik.net.id/community/media/visual/2021/06/18/rammang-rammang_169.jpeg?w=650",
+    "https://images.unsplash.com/photo-1667664885297-8e180a9bc667?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://events.rumah123.com/wp-content/uploads/sites/38/2021/05/08163245/Pusat-Pertumbuhan-Indonesia.jpg",
+    "https://plus.unsplash.com/premium_photo-1663133752932-3757e32a644b?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   ]);
 
   const [popularEvent, setPopularEvent] = useState<any[]>([]);

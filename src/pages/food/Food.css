@@ -1,4 +1,4 @@
-.event-container {
+.food-container {
     padding: 50px;
 }
 
@@ -15,6 +15,7 @@
 
 .section-title-special {
     font-size: 20px;
+    color: #666666;
 }
 
 .carousel-container {
@@ -23,8 +24,8 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    width: 100%; /* Pastikan lebar penuh */
-    max-width: 100%; /* Agar tidak melebihi ukuran layar */
+    width: 100%; 
+    max-width: 100%;
     height: auto;
 }
 
@@ -65,8 +66,8 @@
 }
 
 .category-button {
-    padding: 13px 30px; /* Menambah padding untuk membuat tombol lebih besar */
-    font-size: 20px; /* Menambah ukuran font */
+    padding: 13px 30px;
+    font-size: 20px;
     border: none;
     border-radius: 20px;
     background-color: #f0f0f0;
@@ -78,7 +79,7 @@
 
 .category-button:hover {
     background-color: #e0e0e0;
-    transform: scale(1.05); /* Membuat tombol sedikit lebih besar saat hover */
+    transform: scale(1.05);
 }
 
 .category-button.active {
@@ -95,17 +96,14 @@
     background-color: rgb(244, 244, 244);
     border: 10px;
     border-radius: 10px;
-    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .category-slide:hover{
     transform: scale(1.05);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Menambahkan shadow saat hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
-
-/* Location Images Styles */
 .category-images {
     margin: 20px 0;
     width: 100%;
@@ -132,7 +130,7 @@
     background-color: rgb(244, 244, 244);
     border-radius: 10px;
 }
-/* Rest of the existing styles... */
+
 .section-description {
     color: #666;
     margin: 16px;
@@ -152,20 +150,19 @@
     border-radius: 10px;
 }
 
-.special-event-card {
+.special-food-card {
     margin: 0;
     height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.special-event-card:hover {
-    transform: scale(1.05); /* Memperbesar card sedikit */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Menambahkan shadow saat hover */
+.special-food-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
     cursor: pointer;
-    /* color: aqua; */
 }
 
-.special-event-background{
+.special-food-background{
     margin-top: 180px;
     background-color: #f4f4f4;
     border: 1px solid #e0e0e0;
@@ -174,7 +171,7 @@
     padding: 20px;
 }
 
-.special-event-card ion-img {
+.special-food-card ion-img {
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -182,17 +179,17 @@
     transition: transform 0.3s ease;
 }
 
-.special-event-card:hover ion-img {
-    transform: scale(1.05); /* Memperbesar gambar saat hover */
+.special-food-card:hover ion-img {
+    transform: scale(1.05);
 }
 
-.special-event-card ion-card-content h3 {
+.special-food-card ion-card-content h3 {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 8px;
 }
 
-.special-event-card ion-card-content p {
+.special-food-card ion-card-content p {
     color: #666;
     font-size: 14px;
 }
