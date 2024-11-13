@@ -1,287 +1,157 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-/* Modern Variables */
-:root {
-    --primary-gradient: linear-gradient(135deg, #1e3a8a, #2563eb);
-    --secondary-gradient: linear-gradient(135deg, #585858, #ba3030, #ff0000);
-    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    --hover-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --border-radius-lg: 16px;
-    --border-radius-md: 12px;
-}
-
-/* Carousel - Modern & Smooth */
-.carousel-container {
-    width: auto;
-    height: 600px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
-}
-
-.hero-swiper {
-    width: 100%;
-    height: 100%;
-}
-
-.carousel-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.02);
-    transition: var(--transition-smooth);
-}
-
-.carousel-image:hover {
-    transform: scale(1.05);
-}
-
-/* Container untuk semua jenis card agar tampil horizontal */
-.event-grid,
-.place-grid,
-.food-grid {
-    display: flex;
-    overflow-x: auto;
-    /* Menambahkan scroll horizontal jika card lebih banyak dari lebar layar */
-    gap: 16px;
-    /* Jarak antar card */
-    padding: 20px;
-}
-
-.event-grid::-webkit-scrollbar,
-.place-grid::-webkit-scrollbar,
-.food-grid::-webkit-scrollbar {
-    display: none;
-    /* Menyembunyikan scrollbar untuk tampilan lebih bersih */
-}
-
-.event-section,
-.place-section,
-.food-section {
-    padding: 20px;
-    white-space: nowrap;
-    /* Menghindari card terpotong dalam satu baris */
-}
-
-/* Grid Container Styling for Cards */
-/* Grid Container Styling for Cards */
-.event-grid,
-.place-grid,
-.food-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    /* Pastikan kartu tidak turun ke bawah */
-    overflow-x: auto;
-    /* Tambahkan scrollbar horizontal jika konten melampaui lebar */
-    gap: 12px;
-    /* Jarak antar kartu */
-    padding: 0 16px;
-}
-
-
-
-/* Decorative Text Enhancements */
-.decorative-text h2 {
-    font-size: 24px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 8px;
-    color: #074ed0;
-    position: relative;
+/* Dekorasi untuk Header dan Sub-Title */
+.decorative-text {
     text-align: center;
-}
-
-.decorative-text p {
-    font-size: 16px;
-    font-weight: 400;
-    font-family: 'Montserrat', sans-serif;
-    color: #555;
-    text-align: center;
-}
-
-
-
-/* Animated underline for section titles */
-.section-description {
-    font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
-    color: #555;
-    margin-top: 4px;
-    font-weight: 300;
-    position: relative;
-}
-
-
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-    .hero-swiper {
-        height: 400px;
-    }
-
-    .event-card,
-    .place-card,
-    .food-card {
-        width: 100%;
-    }
-
-    .download-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .image-section {
-        border-radius: 0;
-        height: 300px;
-    }
-
-    .main-image {
-        width: 100%;
-        height: 100%;
-    }
-
-    .content-section {
-        padding: 20px;
-    }
-}
-
-/* Download Card - Full Width */
-.download-card {
-    background: #074ed0;
-    color: white;
-    border-radius: 0;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-    display: flex;
-    justify-content: center;
-}
-
-/* Kontainer utama untuk layout dua kolom */
-.download-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin: 0;
-}
-
-/* Gaya untuk bagian gambar utama */
-.image-section {
-    flex: 1;
-    height: 500px;
-    border-radius: 0 300px 300px 0;
-    overflow: hidden;
-}
-
-.main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Gaya untuk bagian konten teks */
-.content-section {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-family: 'Montserrat', sans-serif;
-}
-.content-section h2 {
-    font-family: 'Montserrat', sans-serif;
-}
-
-.content-section h2 {
-    font-size: 28px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+    padding: 24px;
+    background: linear-gradient(135deg, #4b6cb7, #182848);
     color: #ffffff;
-    margin-bottom: 16px;
-}
-
-.features p {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    margin-bottom: 10px;
-}
-
-/* Gaya untuk Goals */
-.goals {
-    display: flex;
-    gap: 16px;
-    margin-top: 16px;
-    flex-wrap: wrap;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.goals span {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
     margin-bottom: 24px;
 }
 
-/* Enhanced QR Code */
-.qr-code {
-    width: 250px;
-    height: 250px;
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--card-shadow);
-    padding: 8px;
-    margin-top: 8px;
-    background: white;
-    transition: var(--transition-smooth);
+.decorative-text h2 {
+    font-size: 1.8rem;
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-weight: bold;
 }
 
-.qr-code:hover {
-    transform: scale(1.05);
-    box-shadow: var(--hover-shadow);
+.decorative-text p {
+    font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+    opacity: 0.9;
 }
 
-
-/* card css */
-
-
-.card-header {
-    padding-bottom: 0;
+/* Layout dasar untuk setiap section */
+.event-section,
+.place-section,
+.food-section {
+    margin: 20px 0;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-.header-content {
+.section-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    width: 100%;
-    color: #000000;
+    align-items: center;
 }
 
-.card-title {
-    flex: 1;
-}
-
-.section-description {
-    margin-top: 4px;
-    color: #555;
-    font-size: 14px;
+.section-header h3 {
+    font-size: 1.5rem;
     font-family: 'Montserrat', sans-serif;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
 }
 
 .see-all-button {
-    color: #5e5e5e;
-    font-size: 16px;
+    color: #4b6cb7;
+    font-weight: bold;
     font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Grid layout untuk card dalam setiap section */
+.event-grid,
+.place-grid,
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+    padding: 0 10px;
+}
+
+/* Gaya untuk card container */
+.popular-food-card,
+.popular-event-card,
+.popular-destination-card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: #fefefe;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.popular-food-card:hover,
+.popular-event-card:hover,
+.popular-destination-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Image styling untuk setiap card */
+.popular-food-card img,
+.popular-event-card img,
+.popular-destination-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+/* Styling untuk judul dalam card */
+.card-title {
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #333;
+    margin: 12px 12px 4px;
+    text-align: left;
+}
+
+/* Container untuk rating, kategori, atau harga */
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px 12px;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #555;
+    font-weight: 500;
+}
+
+.card-rating,
+.card-category,
+.card-price {
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card-price {
+    color: #e74c3c;
+}
+
+.card-rating::before {
+    content: "⭐";
+    color: #f39c12;
+    margin-right: 4px;
+}
+
+/* Responsive adjustments untuk tampilan tablet dan desktop */
+@media (min-width: 768px) {
+
+    .event-grid,
+    .place-grid,
+    .food-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .event-section,
+    .place-section,
+    .food-section {
+        padding: 32px;
+    }
 }

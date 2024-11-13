@@ -1,0 +1,26 @@
+/* Carousel - Modern & Smooth */
+.carousel-container {
+    width: auto;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+}
+
+.hero-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: var(--transition-smooth);
+}
+
+.carousel-image:hover {
+    transform: scale(1.05);
+}

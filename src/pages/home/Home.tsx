@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { IonContent, IonPage } from "@ionic/react";
+import { IonContent, IonPage, IonButton, IonIcon } from "@ionic/react";
+import { chevronForwardOutline } from "ionicons/icons";
 import NavBar from "../../components/NavBar";
 import Carousel from "../../components/Carousel";
 import { fetchEvents, fetchPlaces, fetchFood } from "../../api/dataService";
@@ -45,7 +46,12 @@ const Home: React.FC = () => {
         </div>
 
         <div className="event-section">
-          <h3>Event Terkini</h3>
+          <div className="section-header">
+            <h3>Event Terkini</h3>
+            <IonButton fill="clear" className="see-all-button">
+              See All <IonIcon icon={chevronForwardOutline} />
+            </IonButton>
+          </div>
           <p>
             Ikuti beragam acara terkini di sekitar Anda untuk pengalaman tak
             terlupakan.
@@ -64,7 +70,12 @@ const Home: React.FC = () => {
         </div>
 
         <div className="place-section">
-          <h3>Tempat Populer</h3>
+          <div className="section-header">
+            <h3>Tempat Populer</h3>
+            <IonButton fill="clear" className="see-all-button">
+              See All <IonIcon icon={chevronForwardOutline} />
+            </IonButton>
+          </div>
           <p>
             Temukan destinasi wisata favorit untuk kunjungan yang mengesankan
             dan penuh inspirasi.
@@ -83,7 +94,12 @@ const Home: React.FC = () => {
         </div>
 
         <div className="food-section">
-          <h3>Kuliner Populer</h3>
+          <div className="section-header">
+            <h3>Kuliner Populer</h3>
+            <IonButton fill="clear" className="see-all-button">
+              See All <IonIcon icon={chevronForwardOutline} />
+            </IonButton>
+          </div>
           <p>
             Nikmati aneka kuliner khas yang menggugah selera di destinasi Anda.
           </p>
