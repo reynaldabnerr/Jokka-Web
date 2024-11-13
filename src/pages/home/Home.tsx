@@ -41,14 +41,19 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <Carousel images={carouselImages} />
         <div className="decorative-text">
-          <h2>Discover Amazing Events Near You</h2>
+          <h2>Discover Amazing Journey Near You</h2>
           <p>Stay updated with the latest events happening around you.</p>
         </div>
 
+        {/* Event Section */}
         <div className="event-section">
           <div className="section-header">
             <h3>Event Terkini</h3>
-            <IonButton fill="clear" className="see-all-button">
+            <IonButton
+              fill="clear"
+              className="see-all-button"
+              routerLink="/event" // Tambahkan rute yang sesuai untuk navigasi
+            >
               See All <IonIcon icon={chevronForwardOutline} />
             </IonButton>
           </div>
@@ -57,9 +62,9 @@ const Home: React.FC = () => {
             terlupakan.
           </p>
           <div className="event-grid">
-            {popularEvent.map((event, index) => (
+            {popularEvent.slice(0, 8).map((event) => (
               <PopularEventCard
-                key={index}
+                key={event.eventid} // Gunakan id unik jika tersedia
                 imageUrl={event.eventimage}
                 title={event.eventname}
                 date={event.eventdate}
@@ -69,10 +74,15 @@ const Home: React.FC = () => {
           </div>
         </div>
 
+        {/* Place Section */}
         <div className="place-section">
           <div className="section-header">
             <h3>Tempat Populer</h3>
-            <IonButton fill="clear" className="see-all-button">
+            <IonButton
+              fill="clear"
+              className="see-all-button"
+              routerLink="/destination" // Tambahkan rute yang sesuai untuk navigasi
+            >
               See All <IonIcon icon={chevronForwardOutline} />
             </IonButton>
           </div>
@@ -81,9 +91,9 @@ const Home: React.FC = () => {
             dan penuh inspirasi.
           </p>
           <div className="place-grid">
-            {popularPlaces.map((place, index) => (
+            {popularPlaces.slice(0, 8).map((place) => (
               <PopularDestinationCard
-                key={index}
+                key={place.destinationid} // Gunakan id unik jika tersedia
                 imageUrl={place.destinationimage}
                 title={place.destinationname}
                 rating={place.destinationrating}
@@ -93,10 +103,15 @@ const Home: React.FC = () => {
           </div>
         </div>
 
+        {/* Food Section */}
         <div className="food-section">
           <div className="section-header">
             <h3>Kuliner Populer</h3>
-            <IonButton fill="clear" className="see-all-button">
+            <IonButton
+              fill="clear"
+              className="see-all-button"
+              routerLink="/food" // Tambahkan rute yang sesuai untuk navigasi
+            >
               See All <IonIcon icon={chevronForwardOutline} />
             </IonButton>
           </div>
@@ -104,9 +119,9 @@ const Home: React.FC = () => {
             Nikmati aneka kuliner khas yang menggugah selera di destinasi Anda.
           </p>
           <div className="food-grid">
-            {popularFood.map((food, index) => (
+            {popularFood.slice(0, 8).map((food) => (
               <PopularFoodCard
-                key={index}
+                key={food.foodid} // Gunakan id unik jika tersedia
                 imageUrl={food.foodimage}
                 title={food.foodname}
                 price={food.foodprice}

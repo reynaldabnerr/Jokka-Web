@@ -14,42 +14,86 @@ import {
   IonToast,
   IonAccordionGroup,
   IonAccordion,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
-import { useHistory } from "react-router-dom";
 import { firestore } from "../../api/firebaseConfig"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";
 import { format } from "date-fns";
 import NavBar from "../../components/NavBar";
 
 const Dashboard: React.FC = () => {
-  const history = useHistory();
   const [eventName, setEventName] = useState<string>("");
   const [eventDescription, setEventDescription] = useState<string>("");
-  const [eventCategories, setEventCategories] = useState<string>("");
+  const [eventCategory, setEventCategory] = useState<string>("");
+  const [eventLocation, setEventLocation] = useState<string>("");
   const [eventDate, setEventDate] = useState<string>("");
   const [eventID, setEventID] = useState<string>("");
   const [eventImage, setEventImage] = useState<string>("");
+
   const [foodName, setFoodName] = useState<string>("");
   const [foodDescription, setFoodDescription] = useState<string>("");
-  const [foodCategories, setFoodCategories] = useState<string>("");
+  const [foodCategory, setFoodCategory] = useState<string>("");
+  const [foodRating, setFoodRating] = useState<string>("");
   const [foodID, setFoodID] = useState<string>("");
   const [foodPrice, setFoodPrice] = useState<string>("");
   const [foodImage, setFoodImage] = useState<string>("");
+
   const [destinationName, setDestinationName] = useState<string>("");
   const [destinationDescription, setDestinationDescription] =
     useState<string>("");
   const [destinationLocation, setDestinationLocation] = useState<string>("");
-  const [destinationID, setDestinationID] = useState<string>(""); // Added Destination ID
+  const [destinationRating, setDestinationRating] = useState<string>("");
+  const [destinationCategory, setDestinationCategory] = useState<string>("");
+  const [destinationID, setDestinationID] = useState<string>("");
   const [destinationImage, setDestinationImage] = useState<string>("");
+
   const [showToast, setShowToast] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>("");
+
+  const eventCategories = [
+    "Music",
+    "Conference",
+    "Workshop",
+    "Seminar",
+    "Festival",
+    "Sports",
+    "Party",
+    "Exhibition",
+  ];
+
+  const foodCategories = [
+    "Traditional",
+    "Fast Food",
+    "Dessert",
+    "Vegetarian",
+    "Vegan",
+    "Seafood",
+    "Asian",
+    "Western",
+    "Italian",
+    "Street Food",
+  ];
+
+  const destinationCategories = [
+    "Nature",
+    "Beach",
+    "Mountains",
+    "Historical",
+    "Urban",
+    "Adventure",
+    "Cultural",
+    "Parks",
+    "Resorts",
+  ];
 
   const handleEventSubmit = async () => {
     try {
       if (
         eventName &&
         eventDescription &&
-        eventCategories &&
+        eventCategory &&
+        eventLocation &&
         eventDate &&
         eventID &&
         eventImage
@@ -61,7 +105,8 @@ const Dashboard: React.FC = () => {
         await addDoc(collection(firestore, "event"), {
           eventname: eventName,
           eventdescription: eventDescription,
-          eventcategories: eventCategories,
+          eventcategories: eventCategory, // Store selected category
+          eventlocation: eventLocation,
           eventdate: formattedDate,
           eventid: eventID,
           eventimage: eventImage,
@@ -71,7 +116,8 @@ const Dashboard: React.FC = () => {
         setShowToast(true);
         setEventName("");
         setEventDescription("");
-        setEventCategories("");
+        setEventCategory("");
+        setEventLocation("");
         setEventDate("");
         setEventID("");
         setEventImage("");
@@ -91,22 +137,28 @@ const Dashboard: React.FC = () => {
       if (
         foodName.trim() !== "" &&
         foodDescription.trim() !== "" &&
-        foodCategories.trim() !== "" &&
+        foodCategory.trim() !== "" &&
+        foodRating.trim() !== "" &&
         foodID.trim() !== "" &&
         foodPrice.trim() !== "" &&
         foodImage.trim() !== ""
       ) {
-        // Menghilangkan "Rp" dan titik dari harga
-        const cleanedPrice = parseFloat(
-          foodPrice.replace(/[^0-9,-]+/g, "").replace(",", ".")
-        );
+        // Menghilangkan semua karakter non-numerik selain tanda koma dan titik
+        const cleanedPrice = foodPrice.replace(/[^0-9,-]+/g, "");
+
+        // Menambahkan "Rp" di depan harga dan memastikan format dengan titik sebagai pemisah ribuan
+        const formattedPrice = `Rp ${cleanedPrice.replace(
+          /\B(?=(\d{3})+(?!\d))/g,
+          "."
+        )}`;
 
         await addDoc(collection(firestore, "food"), {
           foodname: foodName,
           fooddesc: foodDescription,
-          foodcategories: foodCategories,
+          foodcategories: foodCategory,
+          foodrating: foodRating, // Added foodRating
           foodid: foodID,
-          foodprice: cleanedPrice, // Simpan harga sebagai angka
+          foodprice: formattedPrice, // Save the formatted price with Rp
           foodimage: foodImage,
         });
 
@@ -116,7 +168,8 @@ const Dashboard: React.FC = () => {
         // Reset field setelah submit
         setFoodName("");
         setFoodDescription("");
-        setFoodCategories("");
+        setFoodCategory("");
+        setFoodRating(""); // Reset foodRating
         setFoodID("");
         setFoodPrice("");
         setFoodImage("");
@@ -131,12 +184,15 @@ const Dashboard: React.FC = () => {
     }
   };
 
+
   const handleDestinationSubmit = async () => {
     try {
       if (
         destinationName &&
         destinationDescription &&
         destinationLocation &&
+        destinationRating &&
+        destinationCategory &&
         destinationID &&
         destinationImage
       ) {
@@ -144,6 +200,8 @@ const Dashboard: React.FC = () => {
           destinationname: destinationName,
           destinationdescription: destinationDescription,
           destinationlocation: destinationLocation,
+          destinationrating: destinationRating, // Added destination rating
+          destinationcategory: destinationCategory, // Added destination category
           destinationid: destinationID,
           destinationimage: destinationImage,
         });
@@ -153,6 +211,8 @@ const Dashboard: React.FC = () => {
         setDestinationName("");
         setDestinationDescription("");
         setDestinationLocation("");
+        setDestinationRating(""); // Reset destination rating
+        setDestinationCategory(""); // Reset destination category
         setDestinationID("");
         setDestinationImage("");
       } else {
@@ -200,10 +260,23 @@ const Dashboard: React.FC = () => {
                 </IonItem>
                 <IonItem>
                   <IonLabel position="stacked">Event Categories</IonLabel>
+                  <IonSelect
+                    value={eventCategory}
+                    onIonChange={(e) => setEventCategory(e.detail.value!)}
+                  >
+                    {eventCategories.map((category, index) => (
+                      <IonSelectOption key={index} value={category}>
+                        {category}
+                      </IonSelectOption>
+                    ))}
+                  </IonSelect>
+                </IonItem>
+                <IonItem>
+                  <IonLabel position="stacked">Event Location</IonLabel>
                   <IonInput
-                    value={eventCategories}
-                    onIonChange={(e) => setEventCategories(e.detail.value!)}
-                    placeholder="Enter event categories"
+                    value={eventLocation}
+                    onIonChange={(e) => setEventLocation(e.detail.value!)}
+                    placeholder="Enter event location"
                   />
                 </IonItem>
                 <IonItem>
@@ -265,10 +338,23 @@ const Dashboard: React.FC = () => {
                 </IonItem>
                 <IonItem>
                   <IonLabel position="stacked">Food Categories</IonLabel>
+                  <IonSelect
+                    value={foodCategory}
+                    onIonChange={(e) => setFoodCategory(e.detail.value!)}
+                  >
+                    {foodCategories.map((category, index) => (
+                      <IonSelectOption key={index} value={category}>
+                        {category}
+                      </IonSelectOption>
+                    ))}
+                  </IonSelect>
+                </IonItem>
+                <IonItem>
+                  <IonLabel position="stacked">Food Rating</IonLabel>
                   <IonInput
-                    value={foodCategories}
-                    onIonChange={(e) => setFoodCategories(e.detail.value!)}
-                    placeholder="Enter food categories"
+                    value={foodRating}
+                    onIonChange={(e) => setFoodRating(e.detail.value!)}
+                    placeholder="Enter food rating"
                   />
                 </IonItem>
                 <IonItem>
@@ -338,6 +424,27 @@ const Dashboard: React.FC = () => {
                     onIonChange={(e) => setDestinationLocation(e.detail.value!)}
                     placeholder="Enter destination location"
                   />
+                </IonItem>
+                <IonItem>
+                  <IonLabel position="stacked">Destination Rating</IonLabel>
+                  <IonInput
+                    value={destinationRating}
+                    onIonChange={(e) => setDestinationRating(e.detail.value!)}
+                    placeholder="Enter destination rating"
+                  />
+                </IonItem>
+                <IonItem>
+                  <IonLabel position="stacked">Destination Category</IonLabel>
+                  <IonSelect
+                    value={destinationCategory}
+                    onIonChange={(e) => setDestinationCategory(e.detail.value!)}
+                  >
+                    {destinationCategories.map((category, index) => (
+                      <IonSelectOption key={index} value={category}>
+                        {category}
+                      </IonSelectOption>
+                    ))}
+                  </IonSelect>
                 </IonItem>
                 <IonItem>
                   <IonLabel position="stacked">Destination ID</IonLabel>

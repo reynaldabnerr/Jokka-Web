@@ -1,27 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   IonContent,
   IonPage,
-  IonTitle,
-  IonToolbar,
   IonCard,
-  IonCardHeader,
-  IonCardTitle,
   IonCardContent,
+  IonImg,
   IonGrid,
   IonRow,
   IonCol,
-  IonButton,
-  IonIcon,
-  IonImg,
-} from '@ionic/react';
-import { qrCode, logoGoogle, logoApple } from 'ionicons/icons';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import './Event.css';
-import NavBar from '../../components/NavBar';
-import DownloadCard from '../../components/DownloadCard';
-import Carousel2 from '../../components/Carousel2';
+} from "@ionic/react";
+import { fetchEvents } from "../../api/dataService"; // Mengimpor fungsi fetchEvents untuk mengambil data dari Firestore
+import "./Event.css";
+import NavBar from "../../components/NavBar";
+import DownloadCard from "../../components/DownloadCard";
+import Carousel2 from "../../components/Carousel2";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const slideOpts = {
   initialSlide: 0,
@@ -34,71 +27,53 @@ const slideOpts = {
     1024: { slidesPerView: 3 },
   },
 };
-import { useHistory } from "react-router-dom";
 
 const Event: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Event Trending');
-  
-  const categories = [
-    'Event Trending',
-    'Event Sosial',
-    'Event Hiburan',
-    'Event Religius'
+  const [selectedCategory, setSelectedCategory] = useState("All"); // Default kategori "All"
+
+  // Daftar kategori event yang dipilih, termasuk "All"
+  const eventCategories = [
+    "All",
+    "Music",
+    "Conference",
+    "Workshop",
+    "Seminar",
+    "Festival",
+    "Sports",
+    "Party",
+    "Exhibition",
   ];
 
-  const [trendingEvents] = useState([
-    {
-      title: 'Festival F8 Makassar',
-      image: 'https://img.antaranews.com/cache/1200x800/2023/09/06/ImgResizer_20230906_2007_11366.jpg',
-    },
-    {
-      title: 'Toraja International Festival',
-      image: 'https://eventdaerah.kemenparekraf.go.id/storage/app/uploads/public/666/138/6fe/6661386fec2ee809666341.jpg',
-    },
-    {
-      title: 'Makassar Jazz Festival',
-      image: 'https://jadwalevent.web.id/wp-content/uploads/2022/10/Job-Fair-Makassar-720x405.jpg',
-    },
-    {
-      title: 'Lovely December',
-      image: 'https://eventdaerah.kemenparekraf.go.id/storage/app/uploads/public/666/138/6a5/6661386a5f9dc074116045.jpeg',
-    },
-    {
-      title: 'Gandrang Bulo Festival',
-      image: 'https://eventdaerah.kemenparekraf.go.id/storage/app/uploads/public/666/138/6a5/6661386a5f9dc074116045.jpeg',
-    },
-    {
-      title: 'Toraja International Festival',
-      image: 'https://eventdaerah.kemenparekraf.go.id/storage/app/uploads/public/666/138/6fe/6661386fec2ee809666341.jpg',
-    },
-    {
-      title: 'Makassar Jazz Festival',
-      image: 'https://jadwalevent.web.id/wp-content/uploads/2022/10/Job-Fair-Makassar-720x405.jpg',
-    },
-    {
-      title: 'Lovely December',
-      image: 'https://eventdaerah.kemenparekraf.go.id/storage/app/uploads/public/666/138/6a5/6661386a5f9dc074116045.jpeg',
-    },
-  ]);
+  // State untuk menyimpan data event yang diambil dari Firestore
+  const [trendingEvents, setTrendingEvents] = useState<any[]>([]);
 
-  const carouselImages = trendingEvents.map((event) => ({
-    url: event.image,
+  // Fetch data dari Firestore
+  const fetchData = async () => {
+    try {
+      const events = await fetchEvents(); // Mengambil data event dari Firestore
+      setTrendingEvents(events); // Menyimpan data event ke state
+    } catch (error) {
+      console.error("Error fetching events: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Panggil fetchData saat komponen pertama kali dimuat
+  }, []);
+
+  // Filter event berdasarkan kategori yang dipilih
+  const filteredEvents =
+    selectedCategory === "All"
+      ? trendingEvents
+      : trendingEvents.filter(
+          (event) => event.eventcategories === selectedCategory
+        );
+
+  // Ambil gambar kategori dan nama event dari event yang difilter
+  const categoryImages = filteredEvents.map((event) => ({
+    image: event.eventimage,
+    title: event.eventname, // Mengambil eventname untuk ditampilkan
   }));
-
-  const [categoriesImages] = useState([
-    {
-      title: 'Tempat Bersejarah',
-      image: 'https://eventdaerah.kemenparekraf.go.id/storage/app/uploads/public/666/138/6a5/6661386a5f9dc074116045.jpeg',
-    },
-    {
-      title: 'Wisata Alam',
-      image: 'https://eventdaerah.kemenparekraf.go.id/storage/app/uploads/public/664/c4b/3b1/664c4b3b10ec9627803525.png',
-    },
-    {
-      title: 'Pantai',
-      image: 'https://i0.wp.com/smartcitymakassar.com/wp-content/uploads/2023/12/IMG-20231206-WA0023.jpg',
-    },
-  ]);
 
   return (
     <IonPage>
@@ -109,11 +84,29 @@ const Event: React.FC = () => {
           {/* Event Trending Section */}
           <h2 className="section-title">Event Trending</h2>
           <div className="carousel-container">
-            <div className="carousel-arrow left-arrow" onClick={() => (document.querySelector('.swiper-button-prev') as HTMLElement)?.click()}>
+            <div
+              className="carousel-arrow left-arrow"
+              onClick={() =>
+                (
+                  document.querySelector(".swiper-button-prev") as HTMLElement
+                )?.click()
+              }
+            >
               &#10094;
             </div>
-            <Carousel2 images={carouselImages} />
-            <div className="carousel-arrow right-arrow" onClick={() => (document.querySelector('.swiper-button-next') as HTMLElement)?.click()}>
+            <Carousel2
+              images={trendingEvents.map((event) => ({
+                url: event.eventimage,
+              }))}
+            />
+            <div
+              className="carousel-arrow right-arrow"
+              onClick={() =>
+                (
+                  document.querySelector(".swiper-button-next") as HTMLElement
+                )?.click()
+              }
+            >
               &#10095;
             </div>
           </div>
@@ -121,50 +114,68 @@ const Event: React.FC = () => {
           {/* Categories Section */}
           <h2 className="section-title section-title-categories">Categories</h2>
           <div className="categories-buttons">
-            {categories.map((category, index) => (
+            {eventCategories.map((category, index) => (
               <button
                 key={index}
-                className={`category-button ${selectedCategory === category ? 'active' : ''}`}
+                className={`category-button ${
+                  selectedCategory === category ? "active" : ""
+                }`}
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}
               </button>
             ))}
           </div>
-          
+
           {/* Category Images */}
           <div className="category-images">
             <Swiper {...slideOpts}>
-              {categoriesImages.map((category, index) => (
+              {categoryImages.map((category, index) => (
                 <SwiperSlide key={index} className="category-slide">
-                  <img src={category.image} alt={`Category ${index + 1}`} className="category-image" />
-                  <div className="category-title">{category.title}</div>
+                  <img
+                    src={category.image}
+                    alt={`Event ${index + 1}`}
+                    className="category-image"
+                  />
+                  <div className="category-title">{category.title}</div>{" "}
+                  {/* Menampilkan eventname */}
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
 
-          {/* Special Events Section */}
-          <div className='special-event-background'>
-          <h2 className="section-title">Jelajahi Event Luar Biasa</h2>
-          <p section-title-special>
-            Maksimalkan pengorganisasian berbagai festival yang menarik bagi wisatawan lokal dan internasional.
-          </p>
-          <IonGrid>
-            <IonRow>
-              {trendingEvents.map((event, index) => (
-                <IonCol size="12" sizeMd="6" sizeLg="3" key={index}>
-                  <IonCard className="special-event-card">
-                    <IonImg src={event.image} alt={event.title} />
-                    <IonCardContent>
-                      <h3>{event.title}</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </IonCardContent>
-                  </IonCard>
-                </IonCol>
-              ))}
-            </IonRow>
-          </IonGrid>
+          {/* Special Events Section (Without Category Filter) */}
+          <div className="special-event-background">
+            <h2 className="section-title">Jelajahi Event Luar Biasa</h2>
+            <p section-title-special>
+              Maksimalkan pengorganisasian berbagai festival yang menarik bagi
+              wisatawan lokal dan internasional.
+            </p>
+            <IonGrid>
+              <IonRow>
+                {/* Menampilkan semua event tanpa filter kategori */}
+                {trendingEvents.slice(0, 8).map((event, index) => (
+                  <IonCol size="12" sizeMd="6" sizeLg="3" key={event.eventid}>
+                    <IonCard className="special-event-card">
+                      <IonImg src={event.eventimage} alt={event.eventname} />
+                      <IonCardContent>
+                        <h3>{event.eventname}</h3>
+                        <p>{event.eventdescription}</p>
+                        <p>
+                          <strong>Location:</strong> {event.eventlocation}
+                        </p>
+                        <p>
+                          <strong>Date:</strong> {event.eventdate}
+                        </p>
+                        <p>
+                          <strong>Category:</strong> {event.eventcategories}
+                        </p>
+                      </IonCardContent>
+                    </IonCard>
+                  </IonCol>
+                ))}
+              </IonRow>
+            </IonGrid>
           </div>
         </div>
         <DownloadCard />

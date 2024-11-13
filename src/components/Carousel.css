@@ -2,7 +2,6 @@
 .carousel-container {
     width: auto;
     height: 600px;
-    margin: 0 auto;
     position: relative;
     overflow: hidden;
     box-shadow: var(--card-shadow);
