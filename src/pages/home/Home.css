@@ -37,72 +37,31 @@
     transform: scale(1.05);
 }
 
-/* Modern & Attractive Card Styling */
-.event-card,
-.place-card,
-.food-card {
-    position: relative;
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
-    margin: 8px;
-    box-shadow: var(--card-shadow);
-    transition: var(--transition-smooth);
-    background-color: #ffffff;
-    width: 280px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* Container untuk semua jenis card agar tampil horizontal */
+.event-grid,
+.place-grid,
+.food-grid {
+    display: flex;
+    overflow-x: auto;
+    /* Menambahkan scroll horizontal jika card lebih banyak dari lebar layar */
+    gap: 16px;
+    /* Jarak antar card */
+    padding: 20px;
 }
 
-.event-card:hover,
-.place-card:hover,
-.food-card:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: var(--hover-shadow);
+.event-grid::-webkit-scrollbar,
+.place-grid::-webkit-scrollbar,
+.food-grid::-webkit-scrollbar {
+    display: none;
+    /* Menyembunyikan scrollbar untuk tampilan lebih bersih */
 }
 
-/* Attractive Card Image Styling */
-.event-image,
-.place-image,
-.food-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-top-left-radius: var(--border-radius-md);
-    border-top-right-radius: var(--border-radius-md);
-    transition: var(--transition-smooth);
-    filter: brightness(90%);
-}
-
-.event-image:hover,
-.place-image:hover,
-.food-image:hover {
-    filter: brightness(100%);
-}
-
-/* Card Name Styling with Gradient */
-.event-name,
-.place-name,
-.food-name {
-    display: block;
-    padding: 12px 16px;
-    font-size: 15px;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    background: white;
-    color: #000000;
-    font-weight: bold;
-    letter-spacing: 0.3px;
-    backdrop-filter: blur(8px);
-    border-bottom-left-radius: var(--border-radius-md);
-    border-bottom-right-radius: var(--border-radius-md);
-    transition: var(--transition-smooth);
-}
-
-.event-name:hover,
-.place-name:hover,
-.food-name:hover {
-    background: var(--secondary-gradient);
-    color: #ffffff;
+.event-section,
+.place-section,
+.food-section {
+    padding: 20px;
+    white-space: nowrap;
+    /* Menghindari card terpotong dalam satu baris */
 }
 
 /* Grid Container Styling for Cards */
@@ -120,16 +79,7 @@
     padding: 0 16px;
 }
 
-/* Batasi lebar maksimal untuk card "Event Terkini" */
-.popular-card {
-    max-width: 1200px;
-    /* Atur lebar maksimal sesuai keinginan */
-    margin: 24px auto;
-    /* Pusatkan card */
-    padding: 0 16px;
-    /* Tambahkan padding untuk estetika */
-    border-radius: var(--border-radius-md);
-}
+
 
 /* Decorative Text Enhancements */
 .decorative-text h2 {
