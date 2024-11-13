@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Container utama untuk halaman Edit Profile */
+.edit-profile-container {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f0f4ff, #e3e8ff);
+    border-radius: 16px;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 20px auto;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.edit-profile-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling untuk avatar profil */
+.edit-profile-avatar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.edit-profile-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Gaya untuk setiap input field */
+.profile-field-container {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.profile-field-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling untuk label field */
+.profile-field-label {
+    font-size: 0.9em;
+    color: #666;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+/* Styling untuk tombol Simpan */
+.rounded-save-button {
+    margin-top: 25px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    background: red;
+    border-radius: 32px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 180px;
+}
+
+.rounded-save-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}

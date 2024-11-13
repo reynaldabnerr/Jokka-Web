@@ -21,11 +21,11 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { firestore } from "../../api/firebaseConfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import NavBar from "../../components/NavBar";
+import "./EditProfile.css"; // Mengimpor CSS
 
 const EditProfile: React.FC = () => {
   const history = useHistory();
 
-  // State untuk menyimpan data pengguna yang dapat diedit
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -35,7 +35,6 @@ const EditProfile: React.FC = () => {
 
   const [showToast, setShowToast] = useState(false);
 
-  // Ambil data pengguna berdasarkan userId saat ini
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -57,11 +56,9 @@ const EditProfile: React.FC = () => {
       }
     });
 
-    // Cleanup listener on unmount
     return () => unsubscribe();
   }, []);
 
-  // Fungsi untuk menyimpan perubahan profil ke Firestore
   const handleSaveChanges = async () => {
     try {
       const auth = getAuth();
@@ -78,12 +75,12 @@ const EditProfile: React.FC = () => {
           profile_picture_url: userData.profilePicture,
         });
 
-        setShowToast(true); // Tampilkan pesan sukses
-        setTimeout(() => history.push("/profile?refresh=true"), 1000); // Redirect ke profil dengan parameter refresh
+        setShowToast(true);
+        setTimeout(() => history.push("/profile?refresh=true"), 1000);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
-      setShowToast(true); // Tampilkan pesan error
+      setShowToast(true);
     }
   };
 
@@ -97,69 +94,60 @@ const EditProfile: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <div style={{ textAlign: "center", marginBottom: "20px" }}>
+        <div className="edit-profile-container">
           <h2>Edit Your Profile</h2>
 
-          {/* Gambar Profil */}
-          <IonGrid>
-            <IonRow>
-              <IonCol
-                size="12"
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <IonAvatar
-                  style={{
-                    width: "120px",
-                    height: "120px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <IonImg
-                    src={
-                      userData.profilePicture ||
-                      "https://www.example.com/default-profile.jpg"
-                    }
-                  />
-                </IonAvatar>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
+          <div className="edit-profile-avatar">
+            <IonAvatar>
+              <IonImg
+                src={
+                  userData.profilePicture ||
+                  "https://www.example.com/default-profile.jpg"
+                }
+              />
+            </IonAvatar>
+          </div>
 
           {/* Field yang bisa diedit */}
-          <IonItem>
-            <IonLabel position="stacked">Name</IonLabel>
+          <div className="profile-field-container">
+            <div className="profile-field-label">Name</div>
             <IonInput
               value={userData.name}
               onIonChange={(e) =>
                 setUserData({ ...userData, name: e.detail.value! })
               }
             />
-          </IonItem>
+          </div>
 
-          <IonItem>
-            <IonLabel position="stacked">Email</IonLabel>
-            <IonInput
-              value={userData.email}
-              onIonChange={(e) =>
-                setUserData({ ...userData, email: e.detail.value! })
-              }
-            />
-          </IonItem>
-
-          <IonItem>
-            <IonLabel position="stacked">Phone</IonLabel>
+          <div className="profile-field-container">
+            <div className="profile-field-label">Phone</div>
             <IonInput
               value={userData.phone}
               onIonChange={(e) =>
                 setUserData({ ...userData, phone: e.detail.value! })
               }
             />
-          </IonItem>
+          </div>
+
+          {/* Field untuk URL gambar profil */}
+          <div className="profile-field-container">
+            <div className="profile-field-label">Profile Picture URL</div>
+            <IonInput
+              value={userData.profilePicture}
+              onIonChange={(e) =>
+                setUserData({ ...userData, profilePicture: e.detail.value! })
+              }
+              placeholder="Enter image URL"
+            />
+          </div>
 
           {/* Tombol Simpan */}
-          <IonButton expand="full" onClick={handleSaveChanges}>
+          <button
+            className="rounded-save-button"
+            onClick={handleSaveChanges}
+          >
             Save Changes
-          </IonButton>
+          </button>
 
           {/* Toast Pesan Sukses/Error */}
           <IonToast

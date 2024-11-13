@@ -1,25 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+/* Container utama profil */
 .profile-container {
     text-align: center;
-    padding-top: 20px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f0f4ff, #e3e8ff);
+    border-radius: 16px;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 20px auto;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+.profile-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
 
+/* Centering the profile picture */
 .profile-picture-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    margin: 20px 0;
+    position: relative;
 }
 
+.profile-picture-container::before {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    z-index: 0;
+    transition: transform 0.4s ease;
+}
 
+.profile-picture-container:hover::before {
+    transform: scale(1.05);
+}
+
+/* Avatar profil di tengah */
 .profile-avatar {
-    width: 120px;  /* Menyesuaikan ukuran gambar */
-    height: 120px;  /* Menyesuaikan ukuran gambar */
-    border: 4px solid #fff;  /* Menambahkan border putih di sekitar gambar */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Menambahkan efek bayangan */
+    width: 130px;
+    height: 130px;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+    background-color: #f7f7f7;
+    animation: fadeInUp 0.7s ease-out;
 }
 
+.profile-avatar:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
 
 .profile-avatar img {
-    object-fit: cover; /* Memastikan gambar dipotong dengan baik agar sesuai dengan bentuk avatar */
-    border-radius: 50%;  /* Membuat gambar menjadi bulat */
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Animasi Fade In untuk avatar */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Judul profil */
+.profile-container h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    margin-top: 15px;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+}
+
+/* Deskripsi teks di bawah judul */
+.profile-container p {
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    color: #666;
+    max-width: 600px;
+    margin: 10px auto;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+/* Container untuk setiap field profil */
+.profile-field-container {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.profile-field-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling untuk label field profil */
+.profile-field-label {
+    font-size: 0.9em;
+    font-family: 'Montserrat', sans-serif;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Styling untuk nilai (data) di setiap field */
+.profile-field-value {
+    font-size: 1.1em;
+    color: #333;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Tombol Edit Profile styling */
+
+.ion-button {
+    display: flexbox;
+    margin-top: 25px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    background: red;
+    border-radius: 32px;
+    /* Membuat tombol benar-benar bulat */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 180px;
+    /* Menjaga proporsi agar tombol terlihat bagus */
+}
+
+.ion-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
