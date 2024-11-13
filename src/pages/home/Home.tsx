@@ -105,7 +105,6 @@ const Home: React.FC = () => {
             ))}
           </div>
         </PopularCard>
-
         <DownloadCard />
       </IonContent>
     </IonPage>
