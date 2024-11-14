@@ -9,7 +9,7 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { fetchPlaces} from "../../api/dataService"; // Mengimpor fungsi fetchdestinations untuk mengambil data dari Firestore
+import { fetchPlaces } from "../../api/dataService"; // Mengimpor fungsi fetchdestinations untuk mengambil data dari Firestore
 import "./Destination.css";
 import NavBar from "../../components/NavBar";
 import DownloadCard from "../../components/DownloadCard";
@@ -59,7 +59,7 @@ const destination: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchData(); 
+    fetchData();
   }, []);
 
   const filtereddestinations =
@@ -147,26 +147,38 @@ const destination: React.FC = () => {
           <div className="special-destination-background">
             <h2 className="section-title">Jelajahi destination Luar Biasa</h2>
             <p className="section-title-special">
-            Temukan destinasi wisata favorit untuk kunjungan yang mengesankan dan penuh inspirasi.
+              Temukan destinasi wisata favorit untuk kunjungan yang mengesankan
+              dan penuh inspirasi.
             </p>
             <IonGrid>
               <IonRow>
                 {/* Menampilkan semua destination tanpa filter kategori */}
                 {trendingdestinations.slice(0, 8).map((destination, index) => (
-                  <IonCol size="12" sizeMd="6" sizeLg="3" key={destination.destinationid}>
+                  <IonCol
+                    size="12"
+                    sizeMd="6"
+                    sizeLg="3"
+                    key={destination.destinationid}
+                  >
                     <IonCard className="special-destination-card">
-                      <IonImg src={destination.destinationimage} alt={destination.destinationname} />
+                      <IonImg
+                        src={destination.destinationimage}
+                        alt={destination.destinationname}
+                      />
                       <IonCardContent>
                         <h3>{destination.destinationname}</h3>
                         <p>{destination.destinationdescription}</p>
                         <p>
-                          <strong>Location:</strong> {destination.destinationlocation}
+                          <strong>Location:</strong>{" "}
+                          {destination.destinationlocation}
                         </p>
                         <p>
-                          <strong>Rating:</strong> {destination.destinationrating || 'N/A'}
+                          <strong>★</strong>{" "}
+                          {destination.destinationrating || "N/A"}
                         </p>
                         <p>
-                          <strong>Category:</strong> {destination.destinationcategory}
+                          <strong>Category:</strong>{" "}
+                          {destination.destinationcategory}
                         </p>
                       </IonCardContent>
                     </IonCard>

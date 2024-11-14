@@ -15,7 +15,7 @@
 
 .section-title-special {
     font-size: 20px;
-    color : #666666;
+    color: #666666;
 }
 
 .carousel-container {
@@ -24,7 +24,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    width: 100%; 
+    width: 100%;
     max-width: 100%;
     height: auto;
 }
@@ -58,7 +58,7 @@
 
 /* Categories Buttons Styles */
 .categories-buttons {
-    display :flex;
+    display: flex;
     gap: 12px;
     overflow-x: auto;
     padding: 8px;
@@ -98,7 +98,7 @@
     border-radius: 10px;
 }
 
-.category-slide:hover{
+.category-slide:hover {
     transform: scale(1.05);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     cursor: pointer;
@@ -157,12 +157,12 @@
 }
 
 .special-destination-card:hover {
-    transform: scale(1.05); 
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
-.special-destination-background{
+.special-destination-background {
     margin-top: 180px;
     background-color: #f4f4f4;
     border: 1px solid #e0e0e0;
