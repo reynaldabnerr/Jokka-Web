@@ -41,8 +41,11 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <Carousel images={carouselImages} />
         <div className="decorative-text">
-          <h2>Discover Amazing Journey Near You</h2>
-          <p>Stay updated with the latest events happening around you.</p>
+          <h2>Explore Unforgettable Experiences in Kota Daeng</h2>
+          <p>
+            Stay updated with the latest activities and experiences in
+            Makassar
+          </p>
         </div>
 
         {/* Event Section */}
@@ -115,9 +118,7 @@ const Home: React.FC = () => {
               See All <IonIcon icon={chevronForwardOutline} />
             </IonButton>
           </div>
-          <p>
-            Nikmati aneka kuliner khas yang menggugah selera di destinasi Anda.
-          </p>
+          <p>Nikmati aneka kuliner khas yang menggugah selera di Kota Daeng.</p>
           <div className="food-grid">
             {popularFood.slice(0, 8).map((food) => (
               <PopularFoodCard

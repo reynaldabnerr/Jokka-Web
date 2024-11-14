@@ -23,8 +23,8 @@ const AboutUs: React.FC = () => {
       <IonContent fullscreen className="ion-padding">
         <div className="about-header">
           <div className="header-text">
-            <h1 className="header-title">About Us</h1>
-            <p className="sub-title">Jokka information and contact</p>
+            <h1 className="header-title">Welcome to Jokka</h1>
+            <p className="sub-title">Makassar bisa ton ji</p>
           </div>
         </div>
 
