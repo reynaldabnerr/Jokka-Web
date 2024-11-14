@@ -8,15 +8,15 @@ const DownloadCard: React.FC = () => {
       <IonCardContent>
         <div className="download-container">
           {/* Bagian Gambar */}
-          <div
+            <div
             className="image-section"
-            style={{ borderRadius: "0 300px 300px 0", overflow: "hidden" }}
-          >
+            style={{ borderRadius: "0 300px 300px 0", overflow: "hidden", marginLeft: "-16px" }}
+            >
             <IonImg
               src="https://uim-makassar.ac.id/wp-content/uploads/2022/07/1_jD-8s4iAF5IBBUi3LlMQog.png"
               className="main-image"
             />
-          </div>
+            </div>
 
           {/* Bagian Konten Teks dan QR */}
           <div className="content-section">
