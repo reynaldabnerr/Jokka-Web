@@ -34,7 +34,7 @@ const food: React.FC = () => {
   // Daftar kategori food yang dipilih, termasuk "All"
   const foodCategories = [
     "All",
-    "Tradtional",
+    "Traditional",
     "Fast Food",
     "Dessert",
     "Vegetarian",
@@ -67,7 +67,7 @@ const food: React.FC = () => {
     selectedCategory === "All"
       ? trendingfoods
       : trendingfoods.filter(
-          (food) => food.foodcategory === selectedCategory
+          (food) => food.foodcategories === selectedCategory
         );
 
   const categoryImages = filteredfoods.map((food) => ({
