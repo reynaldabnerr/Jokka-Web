@@ -40,9 +40,6 @@ const food: React.FC = () => {
     "Vegetarian",
     "Vegan",
     "Seafood",
-    "Asian",
-    "Western",
-    "Italian",
     "Street Food",
   ];
 

@@ -61,12 +61,19 @@
     display :flex;
     gap: 12px;
     overflow-x: auto;
+    white-space: nowrap; 
     padding: 8px;
     margin-bottom: 20px;
+    /* scrollbar-width: none;  */
+    -webkit-overflow-scrolling: touch;
+}
+
+.categories-buttons::-webkit-scrollbar {
+    display: none; 
 }
 
 .category-button {
-    padding: 13px 30px;
+    padding: 10px 20px;
     font-size: 20px;
     border: none;
     border-radius: 20px;
@@ -74,7 +81,7 @@
     color: #333;
     white-space: nowrap;
     cursor: pointer;
-    transition: all 0.3s ease
+    transition: all 0.3s ease;  
 }
 
 .category-button:hover {
