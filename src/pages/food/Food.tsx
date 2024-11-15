@@ -9,7 +9,7 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { fetchFood} from "../../api/dataService"; // Mengimpor fungsi fetchfoods untuk mengambil data dari Firestore
+import { fetchFood } from "../../api/dataService"; // Mengimpor fungsi fetchfoods untuk mengambil data dari Firestore
 import "./Food.css";
 import NavBar from "../../components/NavBar";
 import DownloadCard from "../../components/DownloadCard";
@@ -50,14 +50,14 @@ const food: React.FC = () => {
   const fetchData = async () => {
     try {
       const foods = await fetchFood();
-      setTrendingfoods(foods); 
+      setTrendingfoods(foods);
     } catch (error) {
       console.error("Error fetching foods: ", error);
     }
   };
 
   useEffect(() => {
-    fetchData(); 
+    fetchData();
   }, []);
 
   const filteredfoods =
@@ -145,7 +145,8 @@ const food: React.FC = () => {
           <div className="special-food-background">
             <h2 className="section-title">Jelajahi food Luar Biasa</h2>
             <p className="section-title-special">
-            Nikmati aneka kuliner khas yang menggugah selera di destinasi Anda.
+              Nikmati aneka kuliner khas yang menggugah selera di destinasi
+              Anda.
             </p>
             <IonGrid>
               <IonRow>
@@ -160,10 +161,7 @@ const food: React.FC = () => {
                           <strong>Harga:</strong> {food.foodprice}
                         </p>
                         <p>
-                          <strong>Rating:</strong> {food.foodrating || 'N/A'}
-                        </p>
-                        <p>
-                          <strong>Category:</strong> {food.foodcategories}
+                          <strong>★</strong> {food.foodrating || "N/A"}
                         </p>
                       </IonCardContent>
                     </IonCard>

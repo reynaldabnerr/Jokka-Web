@@ -15,7 +15,7 @@ const Carousel2: React.FC<Carousel2Props> = ({ images }) => {
       modules={[Autoplay]}
       spaceBetween={10}
       slidesPerView={3} // Menampilkan 3 gambar sekaligus
-      autoplay={{ delay: 3000, disableOnInteraction: false }}
+      autoplay={{ delay: 2000, disableOnInteraction: false }}
       loop={true}
       breakpoints={{
         320: { slidesPerView: 1 },
