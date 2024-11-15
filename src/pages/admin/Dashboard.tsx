@@ -69,9 +69,6 @@ const Dashboard: React.FC = () => {
     "Vegetarian",
     "Vegan",
     "Seafood",
-    "Asian",
-    "Western",
-    "Italian",
     "Street Food",
   ];
 
