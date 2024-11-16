@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.sdg-info-container {
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 20px; /* Menambah padding atas dan bawah */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sdg-info-row {
+  display: flex;
+  align-items: flex-start; /* Menyesuaikan posisi vertikal elemen */
+  justify-content: space-between;
+  max-width: 1200px;
+  gap: 56px; /* Menambah jarak antar elemen untuk tampilan lebih luas */
+  flex-wrap: wrap;
+  font-size: 1rem;
+  color: #313131;
+  line-height: 1.8;
+  margin: 0 auto;
+  padding: 20px 0; /* Tambahkan padding atas dan bawah untuk row */
+}
+
+.sdg-info-text {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Menambah jarak antar elemen di dalam */
+  align-items: flex-start;
+}
+
+.sdg-info-text h1 {
+  font-size: 40px; /* Ukuran font sedikit lebih besar */
+  font-weight: 900;
+  color: #0f0f0f;
+  margin-bottom: 15px; /* Jarak bawah h1 */
+  text-align: left;
+  margin-left: -30px;
+}
+
+.sdg-info-points {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 400;
+  color: #333;
+  margin-top: 10px; /* Jarak antara h1 dan daftar poin */
+}
+
+.sdg-info-points p {
+  margin: 12px 0; 
+  font-size: 18px;
+  font-weight: 500;
+  color: #0f0f0f;/* Tambahkan jarak antar paragraf */
+}
+
+.sdg-info-images {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px; /* Tambahkan jarak atas gambar */
+}
+
+.sdg-info-image {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 12px; /* Membuat sudut gambar lebih lembut */
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+@media (max-width: 768px) {
+  .sdg-info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px; /* Menambah jarak antar elemen di layar kecil */
+  }
+
+  .sdg-info-text h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .sdg-info-points {
+    font-size: 16px;
+  }
+
+  .sdg-info-image {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px; /* Berikan margin atas untuk gambar di layar kecil */
+  }
+}

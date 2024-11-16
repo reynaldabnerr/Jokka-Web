@@ -9,6 +9,7 @@ import DownloadCard from "../../components/DownloadCard";
 import PopularDestinationCard from "../../components/PopularCard/PopularDestinationCard";
 import PopularEventCard from "../../components/PopularCard/PopularEventCard";
 import PopularFoodCard from "../../components/PopularCard/PopularFoodCard";
+import SdgInfo from "../../components/SdgInfo";
 
 const Home: React.FC = () => {
   const [carouselImages, setCarouselImages] = useState<string[]>([
@@ -131,7 +132,7 @@ const Home: React.FC = () => {
             ))}
           </div>
         </div>
-
+        <SdgInfo />
         <DownloadCard />
       </IonContent>
     </IonPage>
