@@ -27,7 +27,7 @@ import {
   pieChart,
   link,
 } from "ionicons/icons";
-import "./SignUp.css"; // Import file CSS
+import "./SignUp.css";
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -61,7 +61,7 @@ const SignUp: React.FC = () => {
         name,
         phone_number: phoneNumber,
         email,
-        profile_picture_url: profilePictureUrl, // Menyimpan profile picture URL
+        profile_picture_url: profilePictureUrl,
         role: "user", // Ubah ke "admin" jika ingin menetapkan role admin
       });
 

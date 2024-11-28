@@ -22,7 +22,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { auth, firestore } from "../../api/firebaseConfig";
-import "./SignIn.css"; // Import file CSS
+import "./SignIn.css";
 import { doc, getDoc } from "firebase/firestore";
 
 const SignIn: React.FC = () => {

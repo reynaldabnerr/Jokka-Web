@@ -9,7 +9,7 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { fetchFood } from "../../api/dataService"; // Mengimpor fungsi fetchfoods untuk mengambil data dari Firestore
+import { fetchFood } from "../../api/dataService";
 import "./Food.css";
 import NavBar from "../../components/NavBar";
 import DownloadCard from "../../components/DownloadCard";

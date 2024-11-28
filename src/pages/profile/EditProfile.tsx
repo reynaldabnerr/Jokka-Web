@@ -21,7 +21,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { firestore } from "../../api/firebaseConfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import NavBar from "../../components/NavBar";
-import "./EditProfile.css"; // Mengimpor CSS
+import "./EditProfile.css";
 
 const EditProfile: React.FC = () => {
   const history = useHistory();
