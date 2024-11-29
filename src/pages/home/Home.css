@@ -89,7 +89,6 @@
     /* Memastikan card berada di tengah */
 }
 
-/* Gaya untuk card container */
 .popular-food-card,
 .popular-event-card,
 .popular-destination-card {
@@ -101,6 +100,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    cursor: pointer; /* Tambahkan ini untuk mengubah kursor menjadi pointer */
 }
 
 .popular-food-card:hover,
