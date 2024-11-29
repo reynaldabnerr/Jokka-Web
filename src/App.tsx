@@ -13,6 +13,7 @@ import Destination from "./pages/destination/Destination";
 import Food from "./pages/food/Food";
 import Event from "./pages/event/Event";
 import CompleteProfile from "./pages/auth/CompleteProfile";
+import EventDetailPage from "./pages/event/Eventdetail"; // Import EventDetailPage
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -67,9 +68,18 @@ const App: React.FC = () => {
           <Route exact path="/destination">
             <Destination />
           </Route>
-          <Route path="/complete-profile">
-            <CompleteProfile onComplete={() => setIsProfileUpdated(true)} />
-          </Route>
+          <Route
+            exact
+            path="/complete-profile"
+            render={() => (
+              <CompleteProfile onComplete={() => setIsProfileUpdated(true)} />
+            )}
+          />
+          <Route
+            exact
+            path="/event/:eventid"
+            render={() => <EventDetailPage />}
+          />
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>

@@ -44,8 +44,7 @@ const Home: React.FC = () => {
         <div className="decorative-text">
           <h2>Explore Unforgettable Experiences in Kota Daeng</h2>
           <p>
-            Stay updated with the latest activities and experiences in
-            Makassar
+            Stay updated with the latest activities and experiences in Makassar
           </p>
         </div>
 
@@ -73,6 +72,7 @@ const Home: React.FC = () => {
                 title={event.eventname}
                 date={event.eventdate}
                 location={event.eventlocation}
+                eventId={event.eventid} // Pastikan eventId diisi dengan nilai yang benar
               />
             ))}
           </div>
