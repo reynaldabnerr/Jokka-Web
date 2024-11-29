@@ -23,6 +23,7 @@ import {
   doc,
   setDoc,
   getDoc,
+  addDoc,
 } from "firebase/firestore";
 import { firestore } from "../../api/firebaseConfig";
 import { getAuth } from "firebase/auth";
@@ -99,9 +100,8 @@ const FoodDetailPage: React.FC = () => {
         timestamp: new Date(),
       };
 
-      // Gunakan userData.name sebagai document ID
-      const orderDocRef = doc(ordersCollectionRef, userData.name);
-      await setDoc(orderDocRef, orderData); // Tambahkan pesanan dengan ID userData.name
+      // Tambahkan dokumen baru ke subkoleksi "foodorders"
+      await addDoc(ordersCollectionRef, orderData); // Menggunakan addDoc untuk membuat dokumen baru
 
       setSuccessMessage("Order placed successfully!");
     } catch (error: any) {

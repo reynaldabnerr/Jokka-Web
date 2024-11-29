@@ -17,7 +17,7 @@ import {
 } from "@ionic/react";
 import { useParams } from "react-router-dom";
 import { fetchDestinationById } from "../../api/dataService";
-import { collection, doc, setDoc, getDoc } from "firebase/firestore";
+import { collection, doc, setDoc, getDoc, addDoc } from "firebase/firestore";
 import { firestore } from "../../api/firebaseConfig";
 import { getAuth } from "firebase/auth";
 import "./Destinationdetail.css";
@@ -26,7 +26,7 @@ const DestinationDetailPage: React.FC = () => {
   const { destinationid } = useParams<{ destinationid: string }>();
   const [destinationDetail, setDestinationDetail] = useState<any>(null);
   const [ticketQuantity, setTicketQuantity] = useState<number>(1);
-  const [ticketDate, setTicketDate] = useState<string>("");
+  const [reservationDate, setReservationDate] = useState<string>(""); // Simpan tanggal reservasi
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -62,7 +62,6 @@ const DestinationDetailPage: React.FC = () => {
     getDestinationDetail();
   }, [destinationid]);
 
-  // Update total price saat jumlah tiket berubah
   useEffect(() => {
     if (destinationDetail) {
       setTotalPrice(destinationDetail.destinationprice * ticketQuantity);
@@ -103,16 +102,13 @@ const DestinationDetailPage: React.FC = () => {
         email: user.email,
         name: userData.name,
         ticketQuantity,
-        ticketDate,
+        reservationDate, // Simpan tanggal reservasi
         totalPrice,
-        timestamp: new Date(),
+        timestamp: new Date(), // Tambahkan timestamp untuk pesanan
       };
 
-      // Gunakan nama pengguna sebagai dokumen ID di subkoleksi
-      const orderDocRef = doc(ordersCollectionRef, userData.name);
-
-      // Tambahkan atau perbarui dokumen dengan dokumen ID = userData.name
-      await setDoc(orderDocRef, orderData);
+      // Tambahkan dokumen baru (ID akan dibuat secara otomatis)
+      await addDoc(ordersCollectionRef, orderData);
 
       setSuccessMessage("Ticket order placed successfully!");
     } catch (error: any) {
@@ -205,16 +201,16 @@ const DestinationDetailPage: React.FC = () => {
             </IonItem>
 
             <IonItem>
-              <IonLabel>Date:</IonLabel>
+              <IonLabel>Reservation Date:</IonLabel>
               <IonDatetime
-                value={ticketDate}
-                onIonChange={(e) =>
-                  setTicketDate(
-                    Array.isArray(e.detail.value)
-                      ? e.detail.value[0]
-                      : e.detail.value || ""
-                  )
-                }
+                presentation="date" // Hanya menampilkan tanggal
+                value={reservationDate}
+                onIonChange={(e) => {
+                  const selectedDate = Array.isArray(e.detail.value)
+                    ? e.detail.value[0]
+                    : e.detail.value || "";
+                  setReservationDate(selectedDate); // Tetapkan nilai ke reservationDate
+                }}
               />
             </IonItem>
 

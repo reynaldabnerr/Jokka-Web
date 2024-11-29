@@ -17,7 +17,7 @@ import {
 } from "@ionic/react";
 import { useParams } from "react-router-dom";
 import { fetchEventById } from "../../api/dataService";
-import { collection, doc, setDoc, getDoc } from "firebase/firestore";
+import { collection, doc, setDoc, getDoc, addDoc } from "firebase/firestore";
 import { firestore } from "../../api/firebaseConfig";
 import { getAuth } from "firebase/auth";
 import "./Eventdetail.css";
@@ -101,9 +101,8 @@ const EventDetailPage: React.FC = () => {
         timestamp: new Date(),
       };
 
-      const orderDocRef = doc(ordersCollectionRef, userData.name);
-
-      await setDoc(orderDocRef, orderData);
+      // Gunakan `addDoc` untuk membuat dokumen baru dengan ID unik secara otomatis
+      await addDoc(ordersCollectionRef, orderData);
 
       setSuccessMessage("Ticket order placed successfully!");
     } catch (error: any) {
