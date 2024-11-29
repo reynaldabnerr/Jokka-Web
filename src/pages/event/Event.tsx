@@ -9,6 +9,7 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
+import { useHistory } from "react-router-dom";
 import { fetchEvents } from "../../api/dataService";
 import "./Event.css";
 import NavBar from "../../components/NavBar";
@@ -30,6 +31,8 @@ const slideOpts = {
 
 const Event: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const history = useHistory(); // Tambahkan useHistory untuk navigasi
 
   // Daftar kategori event yang dipilih, termasuk "All"
   const eventCategories = [
@@ -72,7 +75,8 @@ const Event: React.FC = () => {
   // Ambil gambar kategori dan nama event dari event yang difilter
   const categoryImages = filteredEvents.map((event) => ({
     image: event.eventimage,
-    title: event.eventname, // Mengambil eventname untuk ditampilkan
+    title: event.eventname,
+    id: event.eventid, // Pastikan `eventid` diteruskan
   }));
 
   return (
@@ -82,7 +86,6 @@ const Event: React.FC = () => {
       <IonContent>
         <div className="event-container">
           {/* Event Trending Section */}
-          {/* <h2 className="section-title">Event Trending</h2> */}
           <div className="carousel-container">
             <div
               className="carousel-arrow left-arrow"
@@ -130,15 +133,18 @@ const Event: React.FC = () => {
           {/* Category Images */}
           <div className="category-images">
             <Swiper {...slideOpts}>
-              {categoryImages.map((category, index) => (
-                <SwiperSlide key={index} className="category-slide">
+              {categoryImages.map((category) => (
+                <SwiperSlide
+                  key={category.id}
+                  className="category-slide"
+                  onClick={() => history.push(`/event/${category.id}`)} // Navigasi ke detail page berdasarkan eventid
+                >
                   <img
                     src={category.image}
-                    alt={`Event ${index + 1}`}
+                    alt={`Event ${category.title}`}
                     className="category-image"
                   />
-                  <div className="category-title">{category.title}</div>{" "}
-                  {/* Menampilkan eventname */}
+                  <div className="category-title">{category.title}</div>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -153,10 +159,12 @@ const Event: React.FC = () => {
             </p>
             <IonGrid>
               <IonRow>
-                {/* Menampilkan semua event tanpa filter kategori */}
-                {trendingEvents.slice(0, 8).map((event, index) => (
+                {trendingEvents.slice(0, 8).map((event) => (
                   <IonCol size="12" sizeMd="6" sizeLg="3" key={event.eventid}>
-                    <IonCard className="special-event-card">
+                    <IonCard
+                      className="special-event-card"
+                      onClick={() => history.push(`/event/${event.eventid}`)} // Navigasi ke detail page berdasarkan eventid
+                    >
                       <IonImg src={event.eventimage} alt={event.eventname} />
                       <IonCardContent>
                         <h3>{event.eventname}</h3>
