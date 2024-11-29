@@ -12,7 +12,7 @@ import {
 import { useHistory } from "react-router-dom";
 import { fetchPlaces } from "../../api/dataService";
 import "./Destination.css";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/common/NavBar";
 import DownloadCard from "../../components/DownloadCard";
 import Carousel2 from "../../components/Carousel2";
 import { Swiper, SwiperSlide } from "swiper/react";

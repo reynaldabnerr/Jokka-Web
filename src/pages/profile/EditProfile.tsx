@@ -20,7 +20,7 @@ import { useHistory } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { firestore } from "../../api/firebaseConfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/common/NavBar";
 import "./EditProfile.css";
 
 const EditProfile: React.FC = () => {

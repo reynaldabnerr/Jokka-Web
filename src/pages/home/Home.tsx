@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IonContent, IonPage, IonButton, IonIcon } from "@ionic/react";
 import { chevronForwardOutline } from "ionicons/icons";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/common/NavBar";
 import Carousel from "../../components/Carousel";
 import { fetchEvents, fetchPlaces, fetchFood } from "../../api/dataService";
 import "./Home.css";
