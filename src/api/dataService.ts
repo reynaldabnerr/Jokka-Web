@@ -32,22 +32,20 @@ export const fetchUser = async () => {
   }));
 };
 
-export const fetchFoodById = async (id: string) => {
-  try {
-    const q = query(collection(firestore, "food"), where("foodid", "==", id));
-    const querySnapshot = await getDocs(q);
+// export const fetchFoodById = async (id: string): Promise<FoodDetailPage> => {
+//   const q = query(collection(firestore, "food"), where("foodid", "==", id));
+//   const querySnapshot = await getDocs(q);
 
-    if (!querySnapshot.empty) {
-      const doc = querySnapshot.docs[0];
-      return { id: doc.id, ...doc.data() };
-    } else {
-      throw new Error("Food not found");
-    }
-  } catch (error) {
-    console.error("Error fetching food details:", error);
-    throw error;
-  }
-};
+//   if (!querySnapshot.empty) {
+//     const doc = querySnapshot.docs[0];
+//     return {
+//       id: doc.id,
+//       ...(doc.data() as Omit<FoodDetailPage, "id">), // Konversi data Firestore ke tipe FoodDetail
+//     };
+//   } else {
+//     throw new Error("Food not found");
+//   }
+// };
 
 // Fungsi untuk fetch data berdasarkan destinationid
   export const fetchDestinationById = async (id: string) => {

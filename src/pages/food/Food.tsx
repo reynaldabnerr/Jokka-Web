@@ -166,7 +166,7 @@ const food: React.FC = () => {
                         <h3>{food.foodname}</h3>
                         <p>{food.fooddesc}</p>
                         <p>
-                          <strong>Harga:</strong> {food.foodprice}
+                            <strong>Harga:</strong> {`RP ${food.foodprice.toLocaleString('id-ID')}`}
                         </p>
                         <p>
                           <strong>★</strong> {food.foodrating || "N/A"}

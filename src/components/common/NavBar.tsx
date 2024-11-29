@@ -11,6 +11,7 @@ import {
   personCircleOutline,
   logOutOutline,
   menuOutline,
+  receiptOutline, // Tambahkan ikon untuk My Orders
 } from "ionicons/icons";
 import { useHistory, useLocation } from "react-router-dom";
 import { auth } from "../../api/firebaseConfig";
@@ -18,7 +19,7 @@ import "./NavBar.css";
 
 const NavBar: React.FC = () => {
   const history = useHistory();
-  const location = useLocation(); // Gunakan useLocation untuk mendapatkan path saat ini
+  const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -88,6 +89,7 @@ const NavBar: React.FC = () => {
             >
               About Us
             </IonButton>
+
             {isAdmin && (
               <IonButton
                 onClick={() => navigateTo("/admin-dashboard")}
@@ -98,6 +100,17 @@ const NavBar: React.FC = () => {
                 Dashboard
               </IonButton>
             )}
+
+            {isLoggedIn && (
+              <IonButton
+                onClick={() => navigateTo("/orders")}
+                className={location.pathname === "/orders" ? "selected" : ""}
+              >
+                <IonIcon icon={receiptOutline} className="icon-style" />
+                My Orders
+              </IonButton>
+            )}
+
             {isLoggedIn ? (
               <>
                 <IonButton onClick={handleLogout} className="logout-button">

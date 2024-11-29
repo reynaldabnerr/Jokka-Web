@@ -37,7 +37,7 @@ const PopularDestinationCard: React.FC<PopularDestinationCardProps> = ({
           <IonText className="destination-title">{title}</IonText>
           {/* Rating dan Kategori */}
           <div className="destination-rating-category">
-            <IonText className="destination-rating">⭐ {rating}</IonText>
+            <IonText className="destination-rating"> {rating}</IonText>
             <IonText className="destination-category">{category}</IonText>
           </div>
         </div>

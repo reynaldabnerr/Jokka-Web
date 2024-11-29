@@ -31,6 +31,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import DestinationDetailPage from "./pages/destination/Destinationdetail";
+import OrderPage from "./pages/orders/Order";
 
 setupIonicReact();
 
@@ -64,6 +65,7 @@ const App: React.FC = () => {
             <Route exact path="/edit-profile" component={EditProfile} />
             {/* Pages */}
             <Route exact path="/aboutus" component={Us} />
+            <Route exact path="/orders" component={OrderPage} />
             <Route exact path="/destination" component={Destination} />
             <Route exact path="/food" component={Food} />
             <Route exact path="/event" component={Event} />

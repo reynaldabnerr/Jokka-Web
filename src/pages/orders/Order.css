@@ -1,0 +1,85 @@
+/* Container untuk loading */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    font-size: 1.2rem;
+}
+
+/* Container untuk pesan error */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #fff5f5;
+    color: #dc3545;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Daftar pesanan */
+.order-list {
+    margin: 1rem;
+}
+
+.order-list .no-orders-message {
+    text-align: center;
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}
+
+/* Item pesanan */
+.order-item {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-item h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+}
+
+.order-item p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin: 0.2rem 0;
+}
+
+.order-item strong {
+    color: #495057;
+}
+
+.order-item .total-price {
+    font-size: 1rem;
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Button untuk kembali ke daftar makanan */
+.back-to-food-button {
+    margin: 1rem auto;
+    display: block;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.back-to-food-button:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}

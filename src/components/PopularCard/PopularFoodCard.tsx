@@ -37,8 +37,8 @@ const PopularFoodCard: React.FC<PopularFoodCardProps> = ({
           <IonText className="food-title">{title}</IonText>
           {/* Rating di kiri dan Harga di kanan */}
           <div className="food-price-rating">
-            <IonText className="food-rating">⭐ {rating}</IonText>
-            <IonText className="food-price">{price}</IonText>
+            <IonText className="food-rating"> {rating}</IonText>
+            <IonText className="food-price">Rp {parseInt(price).toLocaleString('id-ID')}</IonText>
           </div>
         </div>
       </IonCardContent>
