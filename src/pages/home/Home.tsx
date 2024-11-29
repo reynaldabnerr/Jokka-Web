@@ -98,6 +98,7 @@ const Home: React.FC = () => {
             {popularPlaces.slice(0, 8).map((place) => (
               <PopularDestinationCard
                 key={place.destinationid} // Gunakan id unik jika tersedia
+                destinationId={place.destinationid} // Tambahkan destinationId untuk navigasi
                 imageUrl={place.destinationimage}
                 title={place.destinationname}
                 rating={place.destinationrating}

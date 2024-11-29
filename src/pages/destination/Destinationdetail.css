@@ -1,0 +1,36 @@
+.destination-detail-container {
+    padding: 16px;
+}
+
+.destination-detail-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.destination-detail-info h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.destination-detail-info p {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.loading-container,
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+.loading-container p,
+.error-container p {
+    margin-top: 16px;
+    font-size: 18px;
+    color: #888;
+}
