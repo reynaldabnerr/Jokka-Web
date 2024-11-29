@@ -16,7 +16,7 @@ import {
   IonAvatar,
   IonImg,
 } from "@ionic/react";
-import { firestore } from "../../api/firebaseConfig"; // Mengimpor konfigurasi firebase
+import { firestore } from "../../api/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useHistory } from "react-router-dom";

@@ -9,7 +9,7 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { fetchEvents } from "../../api/dataService"; // Mengimpor fungsi fetchEvents untuk mengambil data dari Firestore
+import { fetchEvents } from "../../api/dataService";
 import "./Event.css";
 import NavBar from "../../components/NavBar";
 import DownloadCard from "../../components/DownloadCard";
