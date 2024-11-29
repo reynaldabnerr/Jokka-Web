@@ -20,10 +20,11 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth, firestore } from "../../api/firebaseConfig";
-import "./SignIn.css";
 import { doc, getDoc } from "firebase/firestore";
+import "./SignIn.css";
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -103,6 +104,23 @@ const SignIn: React.FC = () => {
     }
   };
 
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setToastMessage("Please enter your email to reset password.");
+      setShowToast(true);
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setToastMessage("Password reset email sent. Please check your inbox.");
+      setShowToast(true);
+    } catch (err: any) {
+      setToastMessage("Error sending reset email: " + err.message);
+      setShowToast(true);
+    }
+  };
+
   const goToSignUp = () => {
     history.push("/signup");
   };
@@ -126,7 +144,7 @@ const SignIn: React.FC = () => {
 
           <IonCard className="signin-card">
             <IonCardContent>
-              {/* Custom styled email input */}
+              {/* Email input */}
               <div className="custom-input">
                 <IonItem
                   lines="none"
@@ -148,7 +166,7 @@ const SignIn: React.FC = () => {
                 </IonItem>
               </div>
 
-              {/* Custom styled password input */}
+              {/* Password input */}
               <div className="custom-input">
                 <IonItem
                   lines="none"
@@ -176,6 +194,7 @@ const SignIn: React.FC = () => {
                 </IonText>
               )}
 
+              {/* Sign In button */}
               <div className="button-container">
                 <IonButton
                   onClick={handleSignIn}
@@ -184,6 +203,19 @@ const SignIn: React.FC = () => {
                   className="button-style"
                 >
                   Sign In
+                </IonButton>
+              </div>
+
+              {/* Forgot Password */}
+              <div className="forgot-password-container ion-text-center ion-padding">
+                <IonButton
+                  fill="clear"
+                  onClick={handleForgotPassword}
+                  color="secondary"
+                  size="small"
+                  className="forgot-password-button-style"
+                >
+                  Forgot Password?
                 </IonButton>
               </div>
 
