@@ -9,6 +9,7 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
+import { useHistory } from "react-router-dom";
 import { fetchFood } from "../../api/dataService";
 import "./Food.css";
 import NavBar from "../../components/NavBar";
@@ -45,6 +46,7 @@ const food: React.FC = () => {
 
   // State untuk menyimpan data food yang diambil dari Firestore
   const [trendingfoods, setTrendingfoods] = useState<any[]>([]);
+  const history = useHistory(); // Tambahkan useHistory untuk navigasi
 
   // Fetch data dari Firestore
   const fetchData = async () => {
@@ -70,6 +72,7 @@ const food: React.FC = () => {
   const categoryImages = filteredfoods.map((food) => ({
     image: food.foodimage,
     title: food.foodname,
+    id: food.foodid,
   }));
 
   return (
@@ -79,7 +82,6 @@ const food: React.FC = () => {
       <IonContent>
         <div className="food-container">
           {/* food Trending Section */}
-          {/* <h2 className="section-title">food Trending</h2> */}
           <div className="carousel-container">
             <div
               className="carousel-arrow left-arrow"
@@ -127,21 +129,24 @@ const food: React.FC = () => {
           {/* Category Images */}
           <div className="category-images">
             <Swiper {...slideOpts}>
-              {categoryImages.map((category, index) => (
-                <SwiperSlide key={index} className="category-slide">
+              {categoryImages.map((category) => (
+                <SwiperSlide
+                  key={category.id}
+                  className="category-slide"
+                  onClick={() => history.push(`/food/${category.id}`)} // Navigasi ke detail page
+                >
                   <img
                     src={category.image}
-                    alt={`food ${index + 1}`}
+                    alt={`food ${category.title}`}
                     className="category-image"
                   />
-                  <div className="category-title">{category.title}</div>{" "}
-                  {/* Menampilkan foodname */}
+                  <div className="category-title">{category.title}</div>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
 
-          {/* Special foods Section (Without Category Filter) */}
+          {/* Special foods Section */}
           <div className="special-food-background">
             <h2 className="section-title">Jelajahi food Luar Biasa</h2>
             <p className="section-title-special">
@@ -150,9 +155,12 @@ const food: React.FC = () => {
             </p>
             <IonGrid>
               <IonRow>
-                {trendingfoods.slice(0, 8).map((food, index) => (
+                {trendingfoods.slice(0, 8).map((food) => (
                   <IonCol size="12" sizeMd="6" sizeLg="3" key={food.foodid}>
-                    <IonCard className="special-food-card">
+                    <IonCard
+                      className="special-food-card"
+                      onClick={() => history.push(`/food/${food.foodid}`)} // Navigasi ke detail page
+                    >
                       <IonImg src={food.foodimage} alt={food.foodname} />
                       <IonCardContent>
                         <h3>{food.foodname}</h3>
