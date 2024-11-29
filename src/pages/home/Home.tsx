@@ -124,6 +124,7 @@ const Home: React.FC = () => {
             {popularFood.slice(0, 8).map((food) => (
               <PopularFoodCard
                 key={food.foodid} // Gunakan id unik jika tersedia
+                foodId={food.foodid} // Tambahkan foodId untuk navigasi
                 imageUrl={food.foodimage}
                 title={food.foodname}
                 price={food.foodprice}

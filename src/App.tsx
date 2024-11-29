@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/home/Home";
@@ -13,7 +13,8 @@ import Destination from "./pages/destination/Destination";
 import Food from "./pages/food/Food";
 import Event from "./pages/event/Event";
 import CompleteProfile from "./pages/auth/CompleteProfile";
-import EventDetailPage from "./pages/event/Eventdetail"; // Import EventDetailPage
+import EventDetailPage from "./pages/event/Eventdetail";
+import FoodDetailPage from "./pages/food/Fooddetail"; // Import FoodDetailPage
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -40,49 +41,42 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/signin">
-            <SignIn />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/admin-dashboard" component={Dashboard} />
-          <Route exact path="/aboutus">
-            <Us />
-          </Route>
-          <Route exact path="/profile">
-            <Profile isProfileUpdated={isProfileUpdated} />
-          </Route>
-          <Route exact path="/edit-profile">
-            <EditProfile />
-          </Route>
-          <Route exact path="/event">
-            <Event />
-          </Route>
-          <Route exact path="/food">
-            <Food />
-          </Route>
-          <Route exact path="/destination">
-            <Destination />
-          </Route>
-          <Route
-            exact
-            path="/complete-profile"
-            render={() => (
-              <CompleteProfile onComplete={() => setIsProfileUpdated(true)} />
-            )}
-          />
-          <Route
-            exact
-            path="/event/:eventid"
-            render={() => <EventDetailPage />}
-          />
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
+          <Switch>
+            {/* Home */}
+            <Route exact path="/home" component={Home} />
+            {/* Authentication */}
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route
+              exact
+              path="/complete-profile"
+              render={() => (
+                <CompleteProfile onComplete={() => setIsProfileUpdated(true)} />
+              )}
+            />
+            {/* Admin Dashboard */}
+            <Route path="/admin-dashboard" component={Dashboard} />
+            {/* Profile */}
+            <Route exact path="/profile">
+              <Profile isProfileUpdated={isProfileUpdated} />
+            </Route>
+            <Route exact path="/edit-profile" component={EditProfile} />
+            {/* Pages */}
+            <Route exact path="/aboutus" component={Us} />
+            <Route exact path="/destination" component={Destination} />
+            <Route exact path="/food" component={Food} />
+            <Route exact path="/event" component={Event} />
+            {/* Detail Pages */}
+            <Route exact path="/event/:eventid" component={EventDetailPage} />
+            <Route exact path="/food/:foodid" component={FoodDetailPage} />
+            {/* Default Route */}
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+            <Route path="*">
+              <Redirect to="/home" />
+            </Route>
+          </Switch>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
