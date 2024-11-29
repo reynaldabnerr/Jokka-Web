@@ -12,9 +12,8 @@ import {
   IonSpinner,
 } from "@ionic/react";
 import { useParams } from "react-router-dom";
-import { firestore } from "../../api/firebaseConfig";
-import { collection, query, where, getDocs } from "firebase/firestore";
 import "./Eventdetail.css";
+import { fetchEventById } from "../../api/dataService";
 
 const EventDetailPage: React.FC = () => {
   const { eventid } = useParams<{ eventid: string }>(); // Ambil eventid dari URL
@@ -23,25 +22,6 @@ const EventDetailPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   // Fungsi untuk mengambil data event berdasarkan eventid
-  const fetchEventById = async (id: string) => {
-    try {
-      const q = query(
-        collection(firestore, "event"),
-        where("eventid", "==", id)
-      );
-      const querySnapshot = await getDocs(q);
-
-      if (!querySnapshot.empty) {
-        const doc = querySnapshot.docs[0];
-        return { id: doc.id, ...doc.data() };
-      } else {
-        throw new Error("Event not found");
-      }
-    } catch (error) {
-      console.error("Error fetching event details:", error);
-      throw error;
-    }
-  };
 
   useEffect(() => {
     const getEventDetail = async () => {

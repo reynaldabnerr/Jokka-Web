@@ -12,9 +12,8 @@ import {
   IonSpinner,
 } from "@ionic/react";
 import { useParams } from "react-router-dom";
-import { firestore } from "../../api/firebaseConfig";
-import { collection, query, where, getDocs } from "firebase/firestore";
 import "./Destinationdetail.css";
+import {fetchDestinationById} from "../../api/dataService"
 
 const DestinationDetailPage: React.FC = () => {
   const { destinationid } = useParams<{ destinationid: string }>(); // Ambil destinationid dari URL
@@ -22,26 +21,6 @@ const DestinationDetailPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fungsi untuk fetch data berdasarkan destinationid
-  const fetchDestinationById = async (id: string) => {
-    try {
-      const q = query(
-        collection(firestore, "destination"),
-        where("destinationid", "==", id)
-      );
-      const querySnapshot = await getDocs(q);
-
-      if (!querySnapshot.empty) {
-        const doc = querySnapshot.docs[0];
-        return { id: doc.id, ...doc.data() };
-      } else {
-        throw new Error("Destination not found");
-      }
-    } catch (error) {
-      console.error("Error fetching destination details:", error);
-      throw error;
-    }
-  };
 
   useEffect(() => {
     const getDestinationDetail = async () => {

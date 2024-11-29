@@ -12,32 +12,14 @@ import {
   IonSpinner,
 } from "@ionic/react";
 import { useParams } from "react-router-dom";
-import { firestore } from "../../api/firebaseConfig";
-import { collection, query, where, getDocs } from "firebase/firestore";
 import "./Fooddetail.css";
+import { fetchFoodById } from "../../api/dataService"; 
 
 const FoodDetailPage: React.FC = () => {
   const { foodid } = useParams<{ foodid: string }>(); // Ambil foodid dari URL
   const [foodDetail, setFoodDetail] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  const fetchFoodById = async (id: string) => {
-    try {
-      const q = query(collection(firestore, "food"), where("foodid", "==", id));
-      const querySnapshot = await getDocs(q);
-
-      if (!querySnapshot.empty) {
-        const doc = querySnapshot.docs[0];
-        return { id: doc.id, ...doc.data() };
-      } else {
-        throw new Error("Food not found");
-      }
-    } catch (error) {
-      console.error("Error fetching food details:", error);
-      throw error;
-    }
-  };
 
   useEffect(() => {
     const getFoodDetail = async () => {
