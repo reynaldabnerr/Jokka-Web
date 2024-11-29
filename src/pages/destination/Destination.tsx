@@ -9,6 +9,7 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
+import { useHistory } from "react-router-dom";
 import { fetchPlaces } from "../../api/dataService";
 import "./Destination.css";
 import NavBar from "../../components/NavBar";
@@ -28,8 +29,9 @@ const slideOpts = {
   },
 };
 
-const destination: React.FC = () => {
+const Destination: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const history = useHistory(); // Tambahkan useHistory untuk navigasi
 
   // Daftar kategori destination yang dipilih, termasuk "All"
   const destinationCategories = [
@@ -72,6 +74,7 @@ const destination: React.FC = () => {
   const categoryImages = filtereddestinations.map((destination) => ({
     image: destination.destinationimage,
     title: destination.destinationname,
+    id: destination.destinationid, // Pastikan destinationid diteruskan
   }));
 
   return (
@@ -81,7 +84,6 @@ const destination: React.FC = () => {
       <IonContent>
         <div className="destination-container">
           {/* destination Trending Section */}
-          {/* <h2 className="section-title">destination Trending</h2> */}
           <div className="carousel-container">
             <div
               className="carousel-arrow left-arrow"
@@ -129,15 +131,18 @@ const destination: React.FC = () => {
           {/* Category Images */}
           <div className="category-images">
             <Swiper {...slideOpts}>
-              {categoryImages.map((category, index) => (
-                <SwiperSlide key={index} className="category-slide">
+              {categoryImages.map((category) => (
+                <SwiperSlide
+                  key={category.id}
+                  className="category-slide"
+                  onClick={() => history.push(`/destination/${category.id}`)} // Navigasi ke detail page berdasarkan destinationid
+                >
                   <img
                     src={category.image}
-                    alt={`destination ${index + 1}`}
+                    alt={`destination ${category.title}`}
                     className="category-image"
                   />
-                  <div className="category-title">{category.title}</div>{" "}
-                  {/* Menampilkan destinationname */}
+                  <div className="category-title">{category.title}</div>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -153,14 +158,21 @@ const destination: React.FC = () => {
             <IonGrid>
               <IonRow>
                 {/* Menampilkan semua destination tanpa filter kategori */}
-                {trendingdestinations.slice(0, 8).map((destination, index) => (
+                {trendingdestinations.slice(0, 8).map((destination) => (
                   <IonCol
                     size="12"
                     sizeMd="6"
                     sizeLg="3"
                     key={destination.destinationid}
                   >
-                    <IonCard className="special-destination-card">
+                    <IonCard
+                      className="special-destination-card"
+                      onClick={() =>
+                        history.push(
+                          `/destination/${destination.destinationid}`
+                        )
+                      } // Navigasi ke detail page berdasarkan destinationid
+                    >
                       <IonImg
                         src={destination.destinationimage}
                         alt={destination.destinationname}
@@ -194,4 +206,4 @@ const destination: React.FC = () => {
   );
 };
 
-export default destination;
+export default Destination;
