@@ -16,7 +16,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { firestore } from "../../api/firebaseConfig";
 import { getAuth, onAuthStateChanged, deleteUser } from "firebase/auth";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/common/NavBar";
 import "./Profile.css";
 
 interface ProfileProps {

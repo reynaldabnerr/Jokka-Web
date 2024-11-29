@@ -20,7 +20,7 @@ import {
 import { firestore } from "../../api/firebaseConfig"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";
 import { format } from "date-fns";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/common/NavBar";
 
 const Dashboard: React.FC = () => {
   const [eventName, setEventName] = useState<string>("");

@@ -5,7 +5,7 @@ import {
   IonIcon,
 } from "@ionic/react";
 
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/common/NavBar";
 import "./AboutUs.css";
 
 import {
