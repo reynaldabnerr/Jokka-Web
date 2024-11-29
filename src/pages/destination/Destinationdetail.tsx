@@ -10,25 +10,48 @@ import {
   IonBackButton,
   IonButtons,
   IonSpinner,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonDatetime,
 } from "@ionic/react";
 import { useParams } from "react-router-dom";
+import { fetchDestinationById } from "../../api/dataService";
+import { collection, doc, setDoc, getDoc } from "firebase/firestore";
+import { firestore } from "../../api/firebaseConfig";
+import { getAuth } from "firebase/auth";
 import "./Destinationdetail.css";
-import {fetchDestinationById} from "../../api/dataService"
 
 const DestinationDetailPage: React.FC = () => {
-  const { destinationid } = useParams<{ destinationid: string }>(); // Ambil destinationid dari URL
+  const { destinationid } = useParams<{ destinationid: string }>();
   const [destinationDetail, setDestinationDetail] = useState<any>(null);
+  const [ticketQuantity, setTicketQuantity] = useState<number>(1);
+  const [ticketDate, setTicketDate] = useState<string>("");
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   useEffect(() => {
     const getDestinationDetail = async () => {
       try {
         setLoading(true);
-        setError(null); // Reset error state
-        const destination = await fetchDestinationById(destinationid); // Ambil detail destinasi
+        setError(null);
+        const destination = (await fetchDestinationById(destinationid)) as {
+          id: string;
+          destinationprice: number;
+          destinationname: string;
+          destinationimage: string;
+          destinationdescription: string;
+          destinationcategory: string;
+          destinationlocation: string;
+          destinationrating: number;
+        };
         setDestinationDetail(destination);
+        setTotalPrice(destination.destinationprice);
       } catch (error: any) {
         setError(error.message || "Failed to fetch destination details.");
       } finally {
@@ -38,6 +61,64 @@ const DestinationDetailPage: React.FC = () => {
 
     getDestinationDetail();
   }, [destinationid]);
+
+  // Update total price saat jumlah tiket berubah
+  useEffect(() => {
+    if (destinationDetail) {
+      setTotalPrice(destinationDetail.destinationprice * ticketQuantity);
+    }
+  }, [ticketQuantity, destinationDetail]);
+
+  const placeTicketOrder = async () => {
+    if (!destinationDetail) return;
+
+    if (!user) {
+      setError("You need to be logged in to place an order.");
+      return;
+    }
+
+    try {
+      setError(null);
+      setSuccessMessage(null);
+
+      // Ambil data pengguna dari Firestore
+      const userDocRef = doc(firestore, "users", user.uid);
+      const userSnapshot = await getDoc(userDocRef);
+      const userData = userSnapshot.exists() ? userSnapshot.data() : null;
+
+      if (!userData) {
+        setError("User data not found.");
+        return;
+      }
+
+      const destinationDocRef = doc(
+        firestore,
+        "destination",
+        destinationDetail.id
+      );
+      const ordersCollectionRef = collection(destinationDocRef, "ticketorders");
+
+      // Data pesanan
+      const orderData = {
+        email: user.email,
+        name: userData.name,
+        ticketQuantity,
+        ticketDate,
+        totalPrice,
+        timestamp: new Date(),
+      };
+
+      // Gunakan nama pengguna sebagai dokumen ID di subkoleksi
+      const orderDocRef = doc(ordersCollectionRef, userData.name);
+
+      // Tambahkan atau perbarui dokumen dengan dokumen ID = userData.name
+      await setDoc(orderDocRef, orderData);
+
+      setSuccessMessage("Ticket order placed successfully!");
+    } catch (error: any) {
+      setError("Failed to place ticket order: " + error.message);
+    }
+  };
 
   if (loading) {
     return (
@@ -104,13 +185,50 @@ const DestinationDetailPage: React.FC = () => {
               <strong>Location:</strong> {destinationDetail.destinationlocation}
             </p>
             <p>
-              <strong>Price:</strong> {destinationDetail.destinationprice}
+              <strong>Price (per ticket):</strong> Rp{" "}
+              {destinationDetail.destinationprice.toLocaleString()}
             </p>
             <p>
               <strong>Rating:</strong> {destinationDetail.destinationrating}
             </p>
-            <IonButton expand="full" color="primary">
-              Visit Now
+
+            <IonItem>
+              <IonLabel>Number of Tickets:</IonLabel>
+              <IonInput
+                type="number"
+                value={ticketQuantity}
+                min="1"
+                onIonChange={(e) =>
+                  setTicketQuantity(Math.max(1, Number(e.detail.value)))
+                }
+              />
+            </IonItem>
+
+            <IonItem>
+              <IonLabel>Date:</IonLabel>
+              <IonDatetime
+                value={ticketDate}
+                onIonChange={(e) =>
+                  setTicketDate(
+                    Array.isArray(e.detail.value)
+                      ? e.detail.value[0]
+                      : e.detail.value || ""
+                  )
+                }
+              />
+            </IonItem>
+
+            <p>
+              <strong>Total Price:</strong> Rp {totalPrice.toLocaleString()}
+            </p>
+
+            {successMessage && (
+              <p className="success-message">{successMessage}</p>
+            )}
+            {error && <p className="error-message">{error}</p>}
+
+            <IonButton expand="full" color="primary" onClick={placeTicketOrder}>
+              Place Ticket Order
             </IonButton>
           </div>
         </div>
