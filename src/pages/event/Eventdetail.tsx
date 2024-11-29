@@ -20,7 +20,7 @@ const EventDetailPage: React.FC = () => {
   const { eventid } = useParams<{ eventid: string }>(); // Ambil eventid dari URL
   const [eventDetail, setEventDetail] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null); // Tambahkan state untuk error
+  const [error, setError] = useState<string | null>(null);
 
   // Fungsi untuk mengambil data event berdasarkan eventid
   const fetchEventById = async (id: string) => {
@@ -108,16 +108,18 @@ const EventDetailPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent>
+      <IonContent className="page-container">
         <div className="event-detail-container">
-          <IonImg
-            src={eventDetail.eventimage}
-            alt={eventDetail.eventname}
-            className="event-detail-image"
-          />
+          <div className="image-wrapper">
+            <IonImg
+              src={eventDetail.eventimage}
+              alt={eventDetail.eventname}
+              className="event-detail-image"
+            />
+          </div>
           <div className="event-detail-info">
             <h1>{eventDetail.eventname}</h1>
-            <p>{eventDetail.eventdescription}</p>
+            <p className="description">{eventDetail.eventdescription}</p>
             <p>
               <strong>Location:</strong> {eventDetail.eventlocation}
             </p>
@@ -127,7 +129,7 @@ const EventDetailPage: React.FC = () => {
             <p>
               <strong>Category:</strong> {eventDetail.eventcategories}
             </p>
-            <IonButton expand="full" color="primary">
+            <IonButton expand="full" color="danger">
               Register Now
             </IonButton>
           </div>

@@ -1,23 +1,91 @@
-.event-detail-container {
-    padding: 16px;
-}
-
-.event-detail-image {
-    width: 100%;
-    border-radius: 8px;
+/* Full-page container untuk memastikan kontainer berada di tengah */
+.page-container {
+    display: flex;
+    align-items: center; /* Posisi vertikal ke tengah */
+    justify-content: center; /* Posisi horizontal ke tengah */
+    min-height: 100vh; /* Tinggi penuh viewport */
+    background-color: #f0f2f5; /* Warna latar belakang */
+    padding: 32px; /* Jarak dari sisi layar */
+    box-sizing: border-box; /* Tambahkan padding ke ukuran elemen */
+  }
+  
+  /* Kontainer utama dengan layout landscape */
+  .event-detail-container {
+    display: flex;
+    flex-direction: row; /* Layout horizontal */
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* Jarak antara gambar dan informasi */
+    padding: 40px; /* Tambahkan padding untuk ruang dalam */
+    max-width: 1000px; /* Lebar maksimal kontainer */
+    background-color: #ffffff; /* Warna latar belakang kontainer */
+    border-radius: 16px; /* Sudut melengkung kontainer */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15); /* Tambahkan bayangan */
+    margin: auto; /* Pastikan kontainer berada di tengah */
+  }
+  
+  /* Wrapper untuk gambar */
+  .image-wrapper {
+    display: flex;
+    align-items: center; /* Pusatkan secara vertikal */
+    justify-content: center; /* Pusatkan secara horizontal */
+    flex: 1; /* Berikan ruang fleksibel */
+  }
+  
+  .event-detail-image {
+    width: 100%; /* Gunakan lebar penuh kontainer gambar */
+    height: auto; /* Sesuaikan tinggi secara proporsional */
+    max-width: 400px; /* Batasi lebar maksimal gambar */
+    max-height: 500px; /* Batasi tinggi maksimal gambar */
+    object-fit: contain; /* Pertahankan proporsi gambar */
+    border-radius: 16px; /* Sudut melengkung gambar */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+  }
+  
+  /* Informasi detail event */
+  .event-detail-info {
+    flex: 1; /* Berikan ruang fleksibel */
+    padding: 24px;
+    background-color: #f9f9f9; /* Warna latar belakang informasi */
+    border-radius: 16px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05); /* Tambahkan bayangan ringan */
+  }
+  
+  .event-detail-info h1 {
+    font-size: 2.4rem; /* Ukuran font judul */
+    font-family: "Montserrat", sans-serif;
+    color: #333; /* Warna teks */
     margin-bottom: 16px;
-}
-
-.event-detail-info h1 {
-    font-size: 24px;
-    margin-bottom: 8px;
-}
-
-.event-detail-info p {
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.event-detail-info button {
-    margin-top: 16px;
-}
+    font-weight: bold;
+    text-align: left; /* Pastikan teks sejajar kiri */
+  }
+  
+  .event-detail-info .description {
+    font-size: 1.2rem; /* Ukuran font deskripsi */
+    margin-bottom: 24px;
+    color: #555;
+    line-height: 1.6; /* Tinggi garis untuk keterbacaan */
+  }
+  
+  .event-detail-info p {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-family: "Montserrat", sans-serif;
+    color: #555;
+  }
+  
+  .event-detail-info strong {
+    color: #4b6cb7; /* Warna teks penting */
+  }
+  
+  /* Tombol aksi */
+  .event-detail-info button {
+    margin-top: 24px;
+    padding: 16px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 12px;
+  }
+  
