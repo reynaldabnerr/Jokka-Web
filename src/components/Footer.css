@@ -12,7 +12,7 @@
 
 .footer-column {
   text-align: left;
-  margin-bottom: 30px; /* Jarak antar kolom */
+  margin-bottom: 30px; 
 }
 
 .footer-column h3 {
@@ -29,7 +29,7 @@
 }
 
 .footer-column ul li {
-  margin-bottom: 18px; /* Jarak antar item lebih besar */
+  margin-bottom: 18px;
   font-size: 1.3rem; /* Ukuran lebih besar */
   color: #4d4d4d; /* Warna teks diubah menjadi lebih gelap */
 }
