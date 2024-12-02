@@ -16,6 +16,7 @@ import NavBar from "../../components/common/NavBar";
 import DownloadCard from "../../components/DownloadCard";
 import Carousel2 from "../../components/Carousel2";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Footer from '../../components/Footer';
 
 const slideOpts = {
   initialSlide: 0,
@@ -180,6 +181,7 @@ const food: React.FC = () => {
           </div>
         </div>
         <DownloadCard />
+        <Footer />
       </IonContent>
     </IonPage>
   );
