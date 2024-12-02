@@ -15,6 +15,7 @@ import {
   locationOutline,
 } from "ionicons/icons";
 import DownloadCard from "../../components/DownloadCard";
+import Footer from '../../components/Footer';
 
 const AboutUs: React.FC = () => {
   return (
@@ -130,6 +131,7 @@ const AboutUs: React.FC = () => {
           </div>
         </div>
         <DownloadCard />
+        <Footer />
       </IonContent>
     </IonPage>
   );
