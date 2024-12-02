@@ -81,7 +81,7 @@
     color: #333;
     white-space: nowrap;
     cursor: pointer;
-    transition: all 0.3s ease;  
+    /* transition: all 0.3s ease;   */
 }
 
 .category-button:hover {
@@ -160,7 +160,7 @@
 .special-food-card {
     margin: 0;
     height: 100%;
-    transition: box-shadow 0.3s ease;
+    /* transition: box-shadow 0.3s ease; */
 }
 
 .special-food-card:hover {
