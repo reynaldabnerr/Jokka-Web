@@ -1,0 +1,76 @@
+.footer-container {
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-content {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 100px 10px; /* Meningkatkan padding untuk lebih banyak ruang */
+  padding-left: 200px;
+}
+
+.footer-column {
+  text-align: left;
+  margin-bottom: 30px; /* Jarak antar kolom */
+}
+
+.footer-column h3 {
+  font-size: 1.8rem; /* Ukuran judul lebih besar */
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #333333; /* Warna judul diubah menjadi lebih gelap */
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 18px; /* Jarak antar item lebih besar */
+  font-size: 1.3rem; /* Ukuran lebih besar */
+  color: #4d4d4d; /* Warna teks diubah menjadi lebih gelap */
+}
+
+.footer-column ul li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  text-align: center;
+  background-color: #262626; /* Warna latar belakang lebih gelap */
+  color: #f2f2f2; /* Warna teks lebih terang */
+  padding: 25px 0; /* Menambah padding atas-bawah */
+  font-size: 1.1rem; /* Ukuran font yang lebih besar */
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Kolom ditumpuk secara vertikal */
+    padding: 80px 20px;
+    gap: 20px; /* Jarak antar kolom lebih kecil */
+  }
+
+  .footer-column {
+    flex: 1 1 100%; /* Kolom mengambil lebar penuh */
+    text-align: center; /* Teks di tengah untuk mobile */
+    min-width: unset; /* Hilangkan batas lebar minimal */
+  }
+
+  .footer-column h3 {
+    font-size: 1.6rem; /* Ukuran teks judul lebih kecil */
+  }
+
+  .footer-column ul li {
+    font-size: 1.1rem; /* Ukuran teks item lebih kecil */
+    margin-bottom: 15px; /* Jarak antar item lebih kecil */
+  }
+
+  .footer-bottom {
+    font-size: 0.9rem; /* Ukuran teks footer bawah lebih kecil */
+    padding: 20px 0; /* Padding atas dan bawah lebih kecil */
+  }
+}
