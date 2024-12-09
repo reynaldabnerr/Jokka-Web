@@ -8,10 +8,11 @@
     <base href="/" />
 
     <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self'; 
+    default-src * self blob: data: gap:; 
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+    script-src * 'self' https://reynaldabnerr.github.io 'unsafe-inline' 'unsafe-eval' blob: data: gap:;
     font-src 'self' https://fonts.gstatic.com data:; 
-    img-src 'self' 
+    img-src * self 'unsafe-inline' blob:
     data: 
     https://reynaldabnerr.github.io
     https://images.unsplash.com 
@@ -43,11 +44,12 @@
     https://cdn0-production-images-kly.akamaized.net
     https://i.pinimg.com
     https://s1-id.alongwalker.co
-    https://cdn1-production-images-kly.akamaized.net;
+    https://cdn1-production-images-kly.akamaized.net
+    gap:;
     connect-src 'self' https://firestore.googleapis.com https://www.googletagmanager.com https://www.gstatic.com https://www.googleapis.com https://firebase.googleapis.com; 
-    script-src 'self' http://xxxx 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.gstatic.com https://www.googleapis.com; 
+    style-src * self 'unsafe-inline' 'unsafe-eval' blob: data: https://www.googletagmanager.com https://www.gstatic.com https://www.googleapis.com gap:; 
     frame-src 'self' https://www.google.com https://www.youtube.com; 
-    object-src 'none'; 
+    object-src * 'self' blob: data: gap:
     base-uri 'self'; 
     form-action 'self'; 
     upgrade-insecure-requests;">
