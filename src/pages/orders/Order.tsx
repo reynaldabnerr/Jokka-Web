@@ -5,16 +5,15 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonSpinner,
-  IonList,
-  IonCard,
-  IonCardContent,
-  IonText,
   IonButton,
-  IonSelect,
-  IonSelectOption,
   IonItem,
   IonLabel,
+  IonSelect,
+  IonSelectOption,
+  IonCard,
+  IonCardContent,
+  IonSpinner,
+  IonText,
 } from "@ionic/react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { firestore } from "../../api/firebaseConfig";
@@ -26,11 +25,10 @@ interface Order {
   id: string;
   name: string;
   email: string;
-  phone_number?: string;
   quantity: number;
   totalPrice: number;
-  reservationTime?: string; // Untuk food
-  ticketDate?: string; // Untuk event atau destination
+  reservationTime?: string; // Untuk kategori Food
+  ticketDate?: string; // Untuk kategori Event atau Destination
   itemName: string; // Nama makanan, event, atau destinasi
   category: string; // Kategori pesanan: "Food", "Event", "Destination"
 }
@@ -119,7 +117,7 @@ const OrderPage: React.FC = () => {
             id: orderDoc.id,
             itemName: destinationName,
             category: "Destination",
-            ticketDate: rawData.reservationDate, // Gunakan reservationDate
+            ticketDate: rawData.reservationDate,
             ...(rawData as Omit<
               Order,
               "id" | "itemName" | "category" | "ticketDate"
@@ -170,12 +168,7 @@ const OrderPage: React.FC = () => {
       <IonPage>
         <IonContent className="error-container">
           <p>{error}</p>
-          <IonButton
-            expand="full"
-            shape="round"
-            color="danger"
-            routerLink="/home"
-          >
+          <IonButton expand="full" shape="round" color="danger" routerLink="/home">
             Go Back to Home
           </IonButton>
         </IonContent>
@@ -192,60 +185,71 @@ const OrderPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonItem>
-          <IonLabel>Filter by Category</IonLabel>
-          <IonSelect
-            value={selectedCategory}
-            onIonChange={(e) => handleCategoryChange(e.detail.value)}
-          >
-            <IonSelectOption value="All">All</IonSelectOption>
-            <IonSelectOption value="Food">Food</IonSelectOption>
-            <IonSelectOption value="Event">Event</IonSelectOption>
-            <IonSelectOption value="Destination">Destination</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-
-        {filteredOrders.length > 0 ? (
-          <IonList>
-            {filteredOrders.map((order) => (
-              <IonCard key={order.id}>
-                <IonCardContent>
-                  <h2>{order.category} Order</h2>
-                  <p>
-                    <strong>Item:</strong> {order.itemName}
-                  </p>
-                  <p>
-                    <strong>Name:</strong> {order.name}
-                  </p>
-                  <p>
-                    <strong>Quantity:</strong> {order.quantity}
-                  </p>
-                  <p>
-                    <strong>Total Price:</strong> Rp{" "}
-                    {order.totalPrice.toLocaleString()}
-                  </p>
-                  {order.category === "Food" ? (
+        <div className="order-layout">
+          <div className="filter-section">
+            <IonCard className="filter-container">
+              <IonCardContent>
+                <h2>Filter</h2>
+                <IonItem lines="none">
+                  {/* <IonLabel>Category</IonLabel> */}
+                  <IonSelect
+                    value={selectedCategory}
+                    placeholder="Select Category"
+                    onIonChange={(e) => handleCategoryChange(e.detail.value)}
+                  >
+                    <IonSelectOption value="All">All</IonSelectOption>
+                    <IonSelectOption value="Food">Food</IonSelectOption>
+                    <IonSelectOption value="Event">Event</IonSelectOption>
+                    <IonSelectOption value="Destination">Destination</IonSelectOption>
+                  </IonSelect>
+                </IonItem>
+                <IonButton shape="round" expand="block" onClick={() => handleCategoryChange("All")}>
+                Reset
+                </IonButton>
+              </IonCardContent>
+            </IonCard>
+          </div>
+          <div className="card-section">
+            {filteredOrders.length > 0 ? (
+              filteredOrders.map((order) => (
+                <IonCard key={order.id} className="order-card">
+                  <IonCardContent>
+                    <h2>{order.itemName}</h2>
                     <p>
-                      <strong>Reservation Time:</strong>{" "}
-                      {new Date(order.reservationTime!).toLocaleString()}
+                      <strong>Name:</strong> {order.name}
                     </p>
-                  ) : (
                     <p>
-                      <strong>Reservation Date:</strong>{" "}
-                      {order.ticketDate
-                        ? new Date(order.ticketDate).toLocaleDateString()
-                        : "Invalid Date"}
+                      <strong>Quantity:</strong> {order.quantity}
                     </p>
-                  )}
-                </IonCardContent>
-              </IonCard>
-            ))}
-          </IonList>
-        ) : (
-          <IonText className="no-orders-message">
-            <p>No orders found for this category.</p>
-          </IonText>
-        )}
+                    <p>
+                      <strong>Total Price:</strong> Rp {order.totalPrice.toLocaleString()}
+                    </p>
+                    {order.category === "Food" ? (
+                      <p>
+                        <strong>Reservation Time:</strong>{" "}
+                        {order.reservationTime
+                          ? new Date(order.reservationTime).toLocaleString()
+                          : "Invalid Date"}
+                      </p>
+                    ) : (
+                      <p>
+                        <strong>Reservation Date:</strong>{" "}
+                        {order.ticketDate
+                          ? new Date(order.ticketDate).toLocaleDateString()
+                          : "Invalid Date"}
+                      </p>
+                    )}
+                    <IonButton shape="round">See Details</IonButton>
+                  </IonCardContent>
+                </IonCard>
+              ))
+            ) : (
+              <IonText className="no-orders-message">
+                <p>No orders found for this category.</p>
+              </IonText>
+            )}
+          </div>
+        </div>
       </IonContent>
     </IonPage>
   );
