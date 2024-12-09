@@ -4,9 +4,22 @@
     <meta charset="utf-8" />
     <title>Jokka Web</title>
 
-    <!-- Set base href to accommodate your GitHub Pages subdirectory -->
+    <!-- Base href for GitHub Pages or other subdirectory hosting -->
     <base href="/" />
 
+    <!-- iOS and Safari compatibility -->
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Jokka Web" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Progressive Web App -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Color scheme -->
     <meta name="color-scheme" content="light dark" />
     <meta
       name="viewport"
@@ -15,19 +28,19 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
 
-    <link rel="manifest" href="/manifest.json" />
-
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-    
-    <!-- Add to homescreen for iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Ionic App" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <script type="module" crossorigin src="/assets/index-BvYEW077.js"></script>
+    <!-- SEO meta tags -->
+    <meta name="description" content="Jokka Travel App - Discover events, destinations, and food in Makassar!" />
+    <meta name="keywords" content="Jokka, travel, Makassar, events, destinations, food, PWA" />
+    <meta name="author" content="Jokka Web Team" />
+    <script type="module" crossorigin src="/assets/index-D3vqorG6.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DZ0VJ8uv.css">
   </head>
   <body>
     <div id="root"></div>
-    
+
+    <!-- Polyfill for Safari compatibility -->
+    <script src="https://cdn.polyfill.io/v3/polyfill.min.js"></script>
+
+    <!-- Main application script -->
   </body>
 </html>
