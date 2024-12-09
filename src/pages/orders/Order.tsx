@@ -168,7 +168,12 @@ const OrderPage: React.FC = () => {
       <IonPage>
         <IonContent className="error-container">
           <p>{error}</p>
-          <IonButton expand="full" shape="round" color="danger" routerLink="/home">
+          <IonButton
+            expand="full"
+            shape="round"
+            color="danger"
+            routerLink="/home"
+          >
             Go Back to Home
           </IonButton>
         </IonContent>
@@ -200,11 +205,17 @@ const OrderPage: React.FC = () => {
                     <IonSelectOption value="All">All</IonSelectOption>
                     <IonSelectOption value="Food">Food</IonSelectOption>
                     <IonSelectOption value="Event">Event</IonSelectOption>
-                    <IonSelectOption value="Destination">Destination</IonSelectOption>
+                    <IonSelectOption value="Destination">
+                      Destination
+                    </IonSelectOption>
                   </IonSelect>
                 </IonItem>
-                <IonButton shape="round" expand="block" onClick={() => handleCategoryChange("All")}>
-                Reset
+                <IonButton
+                  shape="round"
+                  expand="block"
+                  onClick={() => handleCategoryChange("All")}
+                >
+                  Reset
                 </IonButton>
               </IonCardContent>
             </IonCard>
@@ -222,7 +233,8 @@ const OrderPage: React.FC = () => {
                       <strong>Quantity:</strong> {order.quantity}
                     </p>
                     <p>
-                      <strong>Total Price:</strong> Rp {order.totalPrice.toLocaleString()}
+                      <strong>Total Price:</strong> Rp{" "}
+                      {order.totalPrice.toLocaleString()}
                     </p>
                     {order.category === "Food" ? (
                       <p>
@@ -239,7 +251,6 @@ const OrderPage: React.FC = () => {
                           : "Invalid Date"}
                       </p>
                     )}
-                    <IonButton shape="round">See Details</IonButton>
                   </IonCardContent>
                 </IonCard>
               ))
