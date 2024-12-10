@@ -165,7 +165,6 @@ const food: React.FC = () => {
                       <IonImg src={food.foodimage} alt={food.foodname} />
                       <IonCardContent>
                         <h3>{food.foodname}</h3>
-                        <p>{food.fooddesc}</p>
                         <p>
                             <strong>Harga:</strong> {`RP ${food.foodprice.toLocaleString('id-ID')}`}
                         </p>

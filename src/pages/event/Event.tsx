@@ -169,7 +169,6 @@ const Event: React.FC = () => {
                       <IonImg src={event.eventimage} alt={event.eventname} />
                       <IonCardContent>
                         <h3>{event.eventname}</h3>
-                        <p>{event.eventdescription}</p>
                         <p>
                           <strong>Location:</strong> {event.eventlocation}
                         </p>

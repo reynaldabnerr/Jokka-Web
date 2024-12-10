@@ -183,7 +183,7 @@ const EventDetailPage: React.FC = () => {
             </p>
 
             <IonItem>
-              <IonLabel>Number of Tickets:</IonLabel>
+              <IonLabel>Tickets:</IonLabel>
               <IonInput
                 type="number"
                 value={ticketQuantity}

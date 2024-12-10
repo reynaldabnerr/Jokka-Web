@@ -180,7 +180,6 @@ const Destination: React.FC = () => {
                       />
                       <IonCardContent>
                         <h3>{destination.destinationname}</h3>
-                        <p>{destination.destinationdescription}</p>
                         <p>
                           <strong>Location:</strong>{" "}
                           {destination.destinationlocation}
